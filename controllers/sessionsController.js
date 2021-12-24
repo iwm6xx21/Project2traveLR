@@ -1,14 +1,16 @@
 const express = require('express')
+const router = express.Router()
 const bycrypt = require('bcrypt')
 const User = require('../models/user')
-const router = express.Router()
 
 
-router.get('/sessions', (req, res) => {
-    res.send('Session controller works')
+
+router.get('/login', (req, res) => {
+    res.render('sessions/login')
+    
 })
 
-
+//
 
 
 

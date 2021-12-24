@@ -5,7 +5,7 @@ const {Port, SESSION_SECRET} = process.env
 const expressLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 const appsController = require('./controllers/appsController')
-const sessionController = require('./controllers/sessionsController')
+const sessionsController = require('./controllers/sessionsController')
 
 
 
@@ -24,6 +24,12 @@ app.use((req,res,next)=> {
     next()
 })
 
+// app.use(express.json())
+app.use(expressLayouts)
+app.use(express.urlencoded({extended:false}));
+
+// EJS setup
+app.set('view engine', 'ejs')
 // Public Folder setup
 app.use(express.static('public'))
 
@@ -36,36 +42,11 @@ const routeHit = (req, res, next) => {
 
 app.use(routeHit)
 
-app.use(express.urlencoded({extended:false}));
-// app.use(express.json())
-app.use(expressLayouts)
+app.use(appsController)
 
-// EJS setup
-app.set('view engine', 'ejs')
-
-
-// app.use((req, res, next) => {
-//     res.locals.username = req.session.username
-//     res.locals.loggedIn = req.session.loggedIn
-//     // res.locals is the equivalent of the object that you pass to res.render
-//     // this means that in all views, req.session.username will be available
-//     // as the local variable username
-//     next()
-
-// })
-
-// sessions middleware function
-
-
-
-
-
-
-
-//setting up controllers on sever
+//setting up controllers on server
 app.use('/', appsController)
-app.use('/home', sessionController)
-
+app.use('/session', sessionsController)
 
 
 
