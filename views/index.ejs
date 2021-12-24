@@ -1,19 +1,22 @@
+<a href="/" class = "nounderline"><h1 class = logo>trave<span class = logoSpan>LR</span></h1> </a>
+
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="/">
+		<form action="/session/home" method ='POST'>
 			<h1>Create Account</h1>
-			<input required  type="email" placeholder="Email" />
-			<input required type="password" placeholder="Password" />
+			<input required type="text" placeholder="Choose A Username" name = "username" id = "username" />
+			<input required  type="password" placeholder="Create Password" name ="password" id="password" />
+			<input type="password" placeholder="Re-type Password" name ="verifyPassword"> 
 			<button>Sign Up</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="">
+		<form action="session/home">
 			<h1>Sign in</h1>
-			<input required type="text"  name = "email" placeholder="Email" />
-			<input required  type="text" name= "password" placeholder="Password" />
+			<input required type="text" placeholder="Username" name = "username" id ="username" />
+			<input required  type="password" placeholder="Password" name= "password" id ="password"/>
 			<a href="#">Forgot your password?</a>
-			<a href="/session/login"><button>Sign In</button></a>
+			<button>Sign In</button>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -32,8 +35,7 @@
 	</div>
 </div>
 
-<!-- plain JavaScript code below for form animation -->
-
+<!-- Vanilla JavaScript code below for initial signin and signup button click animation. -->
 <script>
     const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
