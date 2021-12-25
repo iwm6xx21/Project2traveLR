@@ -1,0 +1,17 @@
+
+
+<% if (username) {%> 
+    <p>Welcome, <%= username %> !</p>
+<%} %>
+
+<body class = home>
+    <a href="/new"> <button>New Post</button>
+        <div class = homecontainer> </a>
+        <h2>This will be the home page accessed once a user has either logged in or created a new account</h2>
+        <% posts.forEach((post, index) => { %>
+            <%= post.location %> 
+            <%= post.img %> 
+            <%= post.description %> 
+        <%})%>
+        </div>
+</body>

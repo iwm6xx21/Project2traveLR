@@ -18,6 +18,9 @@ app.use(session({
     saveUninitialized: false,
 }))
 
+app.use(express.urlencoded({extended:false}));
+app.use(express.json())
+
 // this will ensure req.session.usernam is available in all views. VERY Important to page rendering
 app.use((req,res,next)=> {
     res.locals.username = req.session.username
@@ -26,7 +29,7 @@ app.use((req,res,next)=> {
 
 // app.use(express.json())
 app.use(expressLayouts)
-app.use(express.urlencoded({extended:false}));
+
 
 // EJS setup
 app.set('view engine', 'ejs')
@@ -48,6 +51,10 @@ app.use(appsController)
 app.use('/', appsController)
 app.use('/session', sessionsController)
 
+// app.use((req, res, next)=> {
+//     res.locals.message = req.session.message
+//     req.session.message = ""
+// })
 
 
 // port setup

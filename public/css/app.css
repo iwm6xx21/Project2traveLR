@@ -286,3 +286,9 @@ footer a {
   max-width: 100%;
   min-height: 400px;
 }
+
+/* post form styling */
+
+.postFormH1 {
+  font-size: 20px;
+}

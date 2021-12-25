@@ -3,8 +3,8 @@ const mongoose = require('../db/connection');
 //post schema for user database 
 
 const postSchema = new mongoose.Schema({
-    title: {type: String, required: true}, 
-    img: {type: String, requied: true},
+    location: {type: String}, 
+    img: {type: String, required: true},
     description: {type: String}
 
 });
