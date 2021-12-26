@@ -5,13 +5,29 @@
 <%} %>
 
 <body class = home>
-    <a href="/new"> <button>New Post</button>
+        <a href="/new"> <button class = "postButton">New Post</button>
         <div class = homecontainer> </a>
-        <h2>This will be the home page accessed once a user has either logged in or created a new account</h2>
-        <% posts.forEach((post, index) => { %>
-            <%= post.location %> 
-            <%= post.img %> 
-            <%= post.description %> 
-        <%})%>
+            <h2>This will be the home page accessed once a user has either logged in or created a new account</h2>
+            <% posts.forEach((post, index) => { %>
+            <div class = "card">
+                <div class = "title">
+                    <%= post.location %>
+                </div> 
+                <div class = "image">
+                    <img src="<%= post.img %>" alt=""> 
+                </div>
+                <div class ="caption">
+                    <%= post.description %> 
+                </div>
+                <div class = deleteDiv>
+                        <form action="">
+                                <input type="submit" value="Delete" class = "btnDelete">
+                        </form>
+
+                </div>
         </div>
+        <%})%>
+    
+        </div>
+    
 </body>

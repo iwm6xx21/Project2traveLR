@@ -6,6 +6,7 @@ const expressLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 const appsController = require('./controllers/appsController')
 const sessionsController = require('./controllers/sessionsController')
+const methodOverride = require('method-override')
 
 
 
@@ -17,6 +18,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
 }))
+
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.json())
@@ -35,6 +37,8 @@ app.use(expressLayouts)
 app.set('view engine', 'ejs')
 // Public Folder setup
 app.use(express.static('public'))
+
+app.use(methodOverride('_method'))
 
 // route hit
 

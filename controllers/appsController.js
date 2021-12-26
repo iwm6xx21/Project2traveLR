@@ -9,10 +9,6 @@ router.get('/', (req, res)=> {
     
         res.render('index')
     })
-    
-
-
-
 
 // route to picture upload form
 
@@ -23,16 +19,16 @@ router.get('/new', (req, res)=> {
 // route to post new picture upload on home page 
 router.post('/home', (req,res) => {
     Post.create(req.body, (err, posts) => {
-        res.redirect('/home', {posts})
+        res.redirect('/home' )
     })
 })
 
+
+// route to obtain new post data from database and render them to the home page
 router.get('/home', (req, res)=> {
     Post.find({}, (err, posts) => {
         res.render('home', {posts})
     })
-    
-
 })
 
 
@@ -49,6 +45,8 @@ router.post('/home', async (req, res) => {
     req.session.username = newUser.username
     res.render('home')
 })
+
+// route to delete posted item
 
 
 
