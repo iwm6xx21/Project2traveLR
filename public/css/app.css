@@ -338,3 +338,12 @@ img {
 .postFormH1 {
   font-size: 20px;
 }
+
+/* edit page styling*/
+
+.btnBack {
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: #aaa5a5;
+  border-color: black;
+}

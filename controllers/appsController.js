@@ -46,6 +46,22 @@ router.post('/home', async (req, res) => {
     res.render('home')
 })
 
+
+// route to edit form 
+router.get('/home/:id/edit', (req, res)=> {
+    Post.findById(req.params.id, (err, posts) => {
+        res.render('edit', {posts})
+    })   
+})
+
+// post edit to home page
+
+router.put('/:id', (req, res) => {
+    Post.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedpost) =>{
+        res.redirect('/home')
+    })
+})
+
 // route to delete posted item
 
 
