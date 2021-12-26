@@ -1,13 +1,12 @@
 
-
-<% if (username) {%> 
-    <p>Welcome, <%= username %> !</p>
-<%} %>
-
 <body class = home>
+
         <a href="/new"> <button class = "postButton">New Post</button>
         <div class = homecontainer> </a>
             <h2>This will be the home page accessed once a user has either logged in or created a new account</h2>
+            <% if (username) {%> 
+                <p>Welcome, <%= username %>!</p>
+            <%} %>
             <% posts.forEach((post, index) => { %>
             <div class = "card">
                 <div class = "title">
@@ -27,8 +26,8 @@
                 <div class = "Edit">
                     <a href="/home/<%= post.id %>/edit">Edit Item</a> 
                 </div>
-        </div>
-        <%})%>
+            </div>
+<%})%>
     
         </div>
     

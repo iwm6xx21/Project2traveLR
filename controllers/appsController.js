@@ -10,13 +10,14 @@ router.get('/', (req, res)=> {
         res.render('index')
     })
 
+
 // route to picture upload form
 
 router.get('/new', (req, res)=> {
     res.render('new')
 })
 
-// route to post new picture upload on home page 
+// route to post new picture upload data to database 
 router.post('/home', (req,res) => {
     Post.create(req.body, (err, posts) => {
         res.redirect('/home' )
@@ -38,13 +39,6 @@ router.get('/home', (req, res) => {
     
 })
 
-// route for posting new user information to database and render user to home page. 
-
-router.post('/home', async (req, res) => {
-    const newUser = await User.create(req.body)
-    req.session.username = newUser.username
-    res.render('home')
-})
 
 
 // route to edit form 

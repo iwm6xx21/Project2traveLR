@@ -293,17 +293,16 @@ footer a {
   box-shadow: 4px 3px 8px 1px #aaa5a5;
   display: flex;
   flex-wrap: wrap;
-  text-align: center;
 }
 
 .card {
-  padding: 2%;
+  padding: 1%;
   flex-grow: 1;
   flex-basis: 16%;
+  text-align: center;
 }
 
 .title {
-  margin-top: auto;
   font-size: 12px;
   margin-bottom: 5px;
   text-align: center;

@@ -7,37 +7,26 @@ const Post = require('../models/post')
 
 
 
+// route for posting new user information to database and redirect new user to home page. 
+//bycrypt added to password data to keep password secure
 
-// // route to picture uplioad form
+router.post('/', async (req, res, next) => {
 
-// router.get('/new', (req, res)=> {
-//     res.render('sessions/new')
-// })
+    try {
 
-// // route to post new picture upload on home page 
-// router.post('/new', (req,res) => {
-//     Post.create(req.body, (err, createdPost) => {
-//         res.render('sessions/home')
-//     })
-// })
-
-// // route hit once user has either logged in to an existing account or registered for a new account
-// router.get('/home', (req, res) => {
-//     res.render('sessions/home')
-    
-// })
-
-// // route for posting new user information to database and render user to home page. 
-
-// router.post('/home', async (req, res) => {
-//     const newUser = await User.create(req.body)
-//     req.session.username = newUser.username
-//     res.render('sessions/home')
-// })
-
-
-
-
+        const salt = bycrypt.genSaltSync(10)
+        const hashedPassword = bycrypt.hashSync(req.body.password, salt)
+        req.body.password = hashedPassword
+        const NewUser = await User.create(req.body) 
+        req.session.username = NewUser.useranme
+        req.session.loggedIn = true
+            res.redirect('/home')
+    } catch (err) {
+        next(err)
+    }
+   
+   
+})
 
 
 

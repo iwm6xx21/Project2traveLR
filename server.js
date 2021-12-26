@@ -55,11 +55,15 @@ app.use(appsController)
 app.use('/', appsController)
 app.use('/session', sessionsController)
 
-// app.use((req, res, next)=> {
-//     res.locals.message = req.session.message
-//     req.session.message = ""
-// })
+app.use((req, res, next)=> {
+    res.locals.message = req.session.message
+    req.session.message = ""
+    next()
+})
 
+app.get('/getSessionInfo', (req, res) => {
+    res.send(req.session.data)
+})
 
 // port setup
 app.listen(Port, ()=> {
