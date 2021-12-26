@@ -54,7 +54,7 @@ router.get('/home/:id/edit', (req, res)=> {
     })   
 })
 
-// post edit to home page
+// post edits to database then redirect to the home page
 
 router.put('/:id', (req, res) => {
     Post.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedpost) =>{
@@ -64,6 +64,11 @@ router.put('/:id', (req, res) => {
 
 // route to delete posted item
 
+router.delete('/:id', (req, res) => {
+    Post.findByIdAndRemove(req.params.id, (err, deletedItem) => {
+        res.redirect('/home')
+    })
+})
 
 
 

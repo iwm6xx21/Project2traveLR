@@ -20,7 +20,7 @@
                     <%= post.description %> 
                 </div>
                 <div class = deleteDiv>
-                        <form action="">
+                        <form action="/<%=post.id%>?_method=DELETE" method ="POST">
                                 <input type="submit" value="Delete" class = "btnDelete">
                         </form>
                 </div>
