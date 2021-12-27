@@ -1,12 +1,22 @@
 
-<body class = home>
 
-        <a href="/new"> <button class = "postButton">New Post</button>
+
+<body class = home>
+    <div class = "logout">
+        <a href="/session/logout"><button class = btnLogout>Logout</button></a>
+        <p class ="homelogo">trave<span class ="logoSpan">LR </span></p>
+    </div>
+        <div class = "welcome">
+            <h2 id = "homeH2">Travel Post Engage Repeat!</h2>
+    
+        </div>
+        <div class ="postButtonContainer">
+            <a href="/new"> <button class = "postButton">New Post</button>
+        </div>
+        <% if (username) {%> 
+            <p class ="username">Welcome, <span class ="usernameSpan"><%= username %>!</span></p>
+        <%} %>
         <div class = homecontainer> </a>
-            <h2>This will be the home page accessed once a user has either logged in or created a new account</h2>
-            <% if (username) {%> 
-                <p>Welcome, <%= username %>!</p>
-            <%} %>
             <% posts.forEach((post, index) => { %>
             <div class = "card">
                 <div class = "title">
@@ -26,9 +36,9 @@
                 <div class = "Edit">
                     <a href="/home/<%= post.id %>/edit">Edit Item</a> 
                 </div>
+                
             </div>
 <%})%>
-    
         </div>
     
 </body>

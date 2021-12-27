@@ -12,11 +12,10 @@
     <title>Document</title>
 </head>
 <body>
-   
 
-    
-
-
+    <% if (message) { %>
+        <p class ="message"><%= message %></p>
+    <% } %>
 
     <%- body %> 
 </body>

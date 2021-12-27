@@ -3,6 +3,12 @@
   color: cadetblue;
   font-family: "Secular One", sans-serif;
   font-size: 40px;
+  text-align: center;
+}
+
+.message {
+  color: white;
+  background-color: red;
 }
 
 .logoSpan {
@@ -27,7 +33,9 @@ h3 {
   box-sizing: border-box;
 }
 
-body {
+/*login/signup page styling*/
+
+.index {
   background: #f6f5f7;
   display: flex;
   justify-content: center;
@@ -276,8 +284,64 @@ footer a {
   background-color: white;
 }
 
+.logout {
+  display: flex;
+  justify-content: space-between;
+}
+
+.homelogo {
+  color: cadetblue;
+  margin-right: 20px;
+  font-family: "Secular One", sans-serif;
+}
+
+.btnLogout {
+  background-color: white;
+  color: cadetblue;
+  border-color: cadetblue;
+  padding: 5px;
+  margin-left: 40px;
+  text-transform: none;
+  /* margin-top: 2000px; */
+}
+
+.btnLogout:hover {
+  background-color: cadetblue;
+  color: white;
+  border-color: white;
+}
+
+.username {
+  color: black;
+  text-align: left;
+  margin-left: 40px;
+  font-family: "Secular One", sans-serif;
+}
+
+.usernameSpan {
+  color: cadetblue;
+}
+
+.postButtonContainer {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
 .postButton {
-  margin-top: 20px;
+  padding: 10px;
+}
+
+.postButton:hover {
+  background-color: white;
+  color: cadetblue;
+  border-color: cadetblue;
+}
+
+#homeH2 {
+  text-align: center;
+  margin-top: 0px;
+  color: gray;
+  font-size: 20px;
 }
 
 .homecontainer {
@@ -289,10 +353,11 @@ footer a {
   width: 1000px;
   max-width: 100%;
   min-height: 400px;
-  overflow: auto;
-  box-shadow: 4px 3px 8px 1px #aaa5a5;
+  /* overflow: auto; */
+  box-shadow: 2px 2px 8px 1px #aaa5a5;
   display: flex;
   flex-wrap: wrap;
+  margin: auto;
 }
 
 .card {

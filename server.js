@@ -11,6 +11,22 @@ const methodOverride = require('method-override')
 
 
 
+// Public Folder setup
+app.use(express.static('public'))
+
+// method-override set up
+app.use(methodOverride('_method'))
+
+app.use(express.urlencoded({extended:false}));
+app.use(express.json())
+
+
+//express layout setup
+app.use(expressLayouts)
+
+// EJS setup
+app.set('view engine', 'ejs')
+
 //middleware for session
 
 app.use(session({
@@ -20,25 +36,30 @@ app.use(session({
 }))
 
 
-app.use(express.urlencoded({extended:false}));
-app.use(express.json())
-
-// this will ensure req.session.usernam is available in all views. VERY Important to page rendering
-app.use((req,res,next)=> {
+// this will ensure req.session.username is available in all views. VERY Important to page rendering
+app.use((req, res, next)=> {
     res.locals.username = req.session.username
+    res.locals.loggedIn = req.session.loggedIn
     next()
 })
 
-// app.use(express.json())
-app.use(expressLayouts)
 
+app.use((req, res, next)=> {
+    res.locals.message = req.session.message
+    req.session.message = ""
+    next()
+})
 
-// EJS setup
-app.set('view engine', 'ejs')
-// Public Folder setup
-app.use(express.static('public'))
+const authRequired = (req, res, next) => {
+    if (req.session.loggedIn) {
+        // if the user is logged in, resolve the route
+        next()
+    } else {
+        // otherwise redirect them to the log in page
+        res.redirect('/session')
+    }
+}
 
-app.use(methodOverride('_method'))
 
 // route hit
 
@@ -49,21 +70,9 @@ const routeHit = (req, res, next) => {
 
 app.use(routeHit)
 
-app.use(appsController)
-
 //setting up controllers on server
 app.use('/', appsController)
 app.use('/session', sessionsController)
-
-app.use((req, res, next)=> {
-    res.locals.message = req.session.message
-    req.session.message = ""
-    next()
-})
-
-app.get('/getSessionInfo', (req, res) => {
-    res.send(req.session.data)
-})
 
 // port setup
 app.listen(Port, ()=> {

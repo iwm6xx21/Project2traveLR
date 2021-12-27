@@ -4,6 +4,21 @@ const Post = require('../models/post')
 const User = require('../models/user')
 
 
+
+// ensure user is logged in before having access to forms that will change posted data
+
+const authRequired = (req, res, next) => {
+    if (req.session.loggedIn) {
+        next()
+    } else {
+       
+        res.redirect('/')
+    }
+}
+
+
+
+
 // login and sign up route
 router.get('/', (req, res)=> {
     
@@ -13,7 +28,7 @@ router.get('/', (req, res)=> {
 
 // route to picture upload form
 
-router.get('/new', (req, res)=> {
+router.get('/new', authRequired, (req, res)=> {
     res.render('new')
 })
 
@@ -42,7 +57,7 @@ router.get('/home', (req, res) => {
 
 
 // route to edit form 
-router.get('/home/:id/edit', (req, res)=> {
+router.get('/home/:id/edit', authRequired, (req, res)=> {
     Post.findById(req.params.id, (err, posts) => {
         res.render('edit', {posts})
     })   
@@ -58,7 +73,7 @@ router.put('/:id', (req, res) => {
 
 // route to delete posted item
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authRequired, (req, res) => {
     Post.findByIdAndRemove(req.params.id, (err, deletedItem) => {
         res.redirect('/home')
     })
