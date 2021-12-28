@@ -22,21 +22,35 @@
                 <div class = "title">
                     <%= post.location %>
                 </div> 
+                <div class ="menuBarDiv">
+                    <button class = testbtn><img class ="menuBar" src="/images/ellipsis.png" alt=""></button>
+                        <nav class="menu">
+                            <ul>
+                                <li class = li>
+                                    <button class = menuBtn>
+                                        <a class = "menuFont" href="/home/<%= post.id %>/edit">Edit Item</a> 
+                                    </button>
+                                </li>
+                                <li class = li>
+                                    <button class = menuBtn>
+                                        <form action="/<%=post.id%>?_method=DELETE" method ="POST">
+                                            <input type="submit" value="Delete" class = "menuFont" id ="btnDelete">
+                                        </form>
+                                    </button>
+                                </li>
+                            </ul>
+                        </nav>
+                </div>
                 <div class = "image">
                     <img src="<%= post.img %>" alt=""> 
+        
                 </div>
                 <div class ="caption">
                     <%= post.description %> 
                 </div>
-                <div class = deleteDiv>
-                        <form action="/<%=post.id%>?_method=DELETE" method ="POST">
-                                <input type="submit" value="Delete" class = "btnDelete">
-                        </form>
+                <div class ="timestamp">
+                    Posted:<%= post.createdAt.toLocaleDateString()%> 
                 </div>
-                <div class = "Edit">
-                    <a href="/home/<%= post.id %>/edit">Edit Item</a> 
-                </div>
-                
             </div>
 <%})%>
         </div>

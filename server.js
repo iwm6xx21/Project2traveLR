@@ -40,6 +40,7 @@ app.use(session({
 app.use((req, res, next)=> {
     res.locals.username = req.session.username
     res.locals.loggedIn = req.session.loggedIn
+    res.locals.id = req.session.id
     next()
 })
 
@@ -49,16 +50,6 @@ app.use((req, res, next)=> {
     req.session.message = ""
     next()
 })
-
-const authRequired = (req, res, next) => {
-    if (req.session.loggedIn) {
-        // if the user is logged in, resolve the route
-        next()
-    } else {
-        // otherwise redirect them to the log in page
-        res.redirect('/session')
-    }
-}
 
 
 // route hit
@@ -73,6 +64,7 @@ app.use(routeHit)
 //setting up controllers on server
 app.use('/', appsController)
 app.use('/session', sessionsController)
+
 
 // port setup
 app.listen(Port, ()=> {

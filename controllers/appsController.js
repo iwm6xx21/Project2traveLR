@@ -1,4 +1,5 @@
 const express = require('express')
+const { Mongoose } = require('mongoose')
 const router = express.Router()
 const Post = require('../models/post')
 const User = require('../models/user')
@@ -11,12 +12,22 @@ const authRequired = (req, res, next) => {
     if (req.session.loggedIn) {
         next()
     } else {
-       
+        req.session.message = "Please log in or sign up to access this action"
         res.redirect('/')
     }
 }
 
+// assess if logged user can delete or edit posts based on their credentials
+const AuthRequiredAction = (req, res, next) => {
+    const user = User.findById(req.params.id)
+    if(req.session.username && user) {
+        next()
+    } else {
+        req.session.message = "access denied"
+        res.redirect('/home')
+    }
 
+}
 
 
 // login and sign up route
@@ -36,7 +47,8 @@ router.get('/new', authRequired, (req, res)=> {
 router.post('/home', (req,res) => {
     Post.create(req.body, (err, posts) => {
         res.redirect('/home' )
-    })
+    });
+   
 })
 
 
@@ -57,10 +69,10 @@ router.get('/home', (req, res) => {
 
 
 // route to edit form 
-router.get('/home/:id/edit', authRequired, (req, res)=> {
+router.get('/home/:id/edit', authRequired, AuthRequiredAction,(req, res)=> {
     Post.findById(req.params.id, (err, posts) => {
         res.render('edit', {posts})
-    })   
+    }) 
 })
 
 // post edits to database then redirect to the home page
@@ -73,12 +85,11 @@ router.put('/:id', (req, res) => {
 
 // route to delete posted item
 
-router.delete('/:id', authRequired, (req, res) => {
+router.delete('/:id', authRequired, AuthRequiredAction, (req, res) => {
     Post.findByIdAndRemove(req.params.id, (err, deletedItem) => {
         res.redirect('/home')
     })
 })
-
 
 
 module.exports = router

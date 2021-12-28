@@ -41,6 +41,7 @@ router.post('/signup', async (req, res, next) => {
 
 
 // route for existing user login
+// conditional statements added to ensure username and password entered is correct 
 // test example1 -  username: testy password: two
 // test example1 -  username: will password: iam
 
@@ -55,8 +56,6 @@ router.post('/login', async (req, res, next) => {
                 res.redirect('/home')
             } else {
                 req.session.message = "Incorrect username or password"
-                // we're setting a session message here
-                // this is a nice way to communicate with our users
                 res.redirect('/')
             }
         } else {

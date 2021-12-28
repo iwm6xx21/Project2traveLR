@@ -5,7 +5,15 @@ const mongoose = require('../db/connection');
 const postSchema = new mongoose.Schema({
     location: {type: String}, 
     img: {type: String, required: true},
-    description: {type: String}
+    description: {type: String},
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 
 });
 
