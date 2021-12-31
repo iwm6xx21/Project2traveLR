@@ -10,7 +10,6 @@ const methodOverride = require('method-override')
 
 
 
-
 // Public Folder setup
 app.use(express.static('public'))
 

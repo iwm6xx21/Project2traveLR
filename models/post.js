@@ -1,8 +1,8 @@
 const mongoose = require('../db/connection');
-
+const {Schema} = mongoose;
 //post schema for user database 
 
-const postSchema = new mongoose.Schema({
+const postSchema = new Schema({
     location: {type: String}, 
     img: {type: String, required: true},
     description: {type: String},
@@ -10,9 +10,14 @@ const postSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
+    user: {
+        type: Schema.Types.ObjectId,
         ref: 'User'
+    },
+
+    comments: {
+        type: Schema.Types.ObjectId,
+        ref: "Comment"
     }
 
 });

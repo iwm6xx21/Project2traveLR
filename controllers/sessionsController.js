@@ -19,7 +19,7 @@ router.post('/signup', async (req, res, next) => {
             const desiredUsername = req.body.username
             const userExists = await User.findOne({ username: desiredUsername })
             if (userExists) {
-                req.session.message = 'User name already taken'
+                req.session.message = 'User name already in use'
                 res.redirect('/')
             } else {
                 const salt = bcrypt.genSaltSync(10)
@@ -68,7 +68,7 @@ router.post('/login', async (req, res, next) => {
 })
 
 
-// log out route. Takes user back to login/signup page on click
+// log out route. Destroys session and takes user back to login/signup page on click
 
 router.get('/logout', (req, res) => {
     req.session.destroy()
