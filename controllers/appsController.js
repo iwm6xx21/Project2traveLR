@@ -3,54 +3,34 @@ const { Mongoose } = require('mongoose')
 const router = express.Router()
 const Post = require('../models/post')
 const User = require('../models/user')
-
-// middleware to ensure a login to access new, edit, and delete routes. 
-
-const authRequired = (req, res, next) => {
-    if (req.session.loggedIn) {
-        next()
-    } else {
-        req.session.message = "Please log in or sign up to access this action"
-        res.redirect('/')
-    }
-}
-
-// assess if logged user can delete or edit posts based on their credentials
-// const AuthRequiredAction = (req, res, next) => {
-//     const user = User.findById(req.params.id)
-//     if(req.session.username && user) {
-//         next()
-//     } else {
-//         req.session.message = "access denied"
-//         res.redirect('/home')
-//     }
-
-// }
+const Comment = require('../models/comments')
+const {authRequired} = require('../middleware')
+// const { require } = require('find-config')
 
 
 // login and sign up route
 router.get('/', (req, res)=> {
     
-        res.render('index')
+        res.render('login')
     })
 
-
-// route to picture upload form
+// route to picture upload form. Must be logged in access. 
 
 router.get('/new', authRequired, (req, res)=> {
     
     res.render('new')
 })
 
-
-// route to post new picture upload data to database 
-router.post('/home', (req,res) => {
+// route to post new picture upload data to database. Must be logged in access. 
+router.post('/home', (req,res, next) => {
     Post.create(req.body, (err, posts) => {
-        req.session.message = "Your adventure has been posted!"
+        const poster = req.body.location
+        console.log(poster)
+        const postedBy = req.session.username
+        req.session.message = `${postedBy} your adventure has been posted!`
         res.redirect('/home')
-
-    });
-   
+            
+        })
 })
 
 
@@ -62,6 +42,7 @@ router.get('/home', (req, res)=> {
 })
 
 
+
 // route hit once user has either logged in to an existing account or registered for a new account
 router.get('/home', (req, res) => {
     res.render('home')
@@ -69,23 +50,41 @@ router.get('/home', (req, res) => {
 })
 
 
+// show route for handlining posts 
+router.get('/home/:id', (async(req, res) => {
+    const posts = await Post.findById(req.params.id).populate('author'); 
+    console.log(posts)
+    res.render('show', {posts})
 
-// route to edit form 
+}))
+
+// post comments router on show page
+router.post('/home/:id/comments', authRequired, async (req, res)=> {
+   const posts = await Post.findById(req.params.id);
+   const comment = new Comment(req.body)
+   posts.comments.push(comment)
+    await comment.save();
+    await posts.save();
+    res.redirect(`/home/${posts._id}`);
+})
+
+
+// route to edit form. Must be logged in access. 
 router.get('/home/:id/edit', authRequired,(req, res)=> {
     Post.findById(req.params.id, (err, posts) => {
         res.render('edit', {posts})
     }) 
 })
 
-// post edits to database then redirect to the home page
+// post edits to database then redirect to the home page. Must be logged in access. 
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authRequired, (req, res) => {
     Post.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedpost) =>{
         res.redirect('/home')
     })
 })
 
-// route to delete posted item
+// route to delete posted item. Must be logged in access. 
 
 router.delete('/:id', authRequired, (req, res) => {
     Post.findByIdAndRemove(req.params.id, (err, deletedItem) => {
@@ -93,6 +92,9 @@ router.delete('/:id', authRequired, (req, res) => {
         res.redirect('/home')
     })
 })
+
+
+
 
 
 module.exports = router

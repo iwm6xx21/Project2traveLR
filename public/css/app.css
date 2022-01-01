@@ -441,31 +441,7 @@ img {
   border-radius: 4px;
   border: 1px solid #dedede;
   width: auto;
-}
-
-/* comments section*/
-
-.commentContainer {
-  text-align: center;
-}
-
-.commentBtn {
-  font-size: 8px;
-  color: cadetblue;
-  padding: 0px;
-  background-color: white;
-  text-transform: none;
-  border: solid white;
-}
-
-.commentBox {
-  visibility: hidden;
-  position: absolute;
-  display: inline-block;
-  background-color: white;
-  border-radius: 4px;
-  border: 1px solid #dedede;
-  width: auto;
+  padding: 2px;
 }
 
 nav ul {
@@ -496,19 +472,19 @@ button:focus + .menu {
 
 .menuBtn {
   border-radius: 0;
-  padding: 4px;
+  padding: 0px;
   background-color: white;
+  color: cadetblue;
   border-color: white;
-  color: gray;
 }
 
-.menuBtn:hover {
-  background-color: rgb(233, 225, 225);
-  color: black;
+.menuFont:hover {
+  color: cadetblue;
+  /* color: black; */
 }
 
 .menuFont {
-  font-size: 10px;
+  font-size: 8px;
   text-transform: none;
   font-family: "Secular One", sans-serif;
 }
@@ -518,4 +494,87 @@ button:focus + .menu {
   width: 50px;
   font-size: 10px;
   background-color: white;
+}
+
+#btnDelete:hover {
+  color: cadetblue;
+}
+
+/* show page styling*/
+
+.timestampShow {
+  /* display: flex;
+  justify-content: center;
+  justify-content: space-between; */
+  /* border: solid red; */
+  font-size: 15px;
+  color: lightgray;
+  margin-top: 10px;
+  width: 600px;
+  margin: auto;
+
+  /* margin-bottom: 10px; */
+}
+
+.showImg {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+}
+
+.showcontainer {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 600px;
+  max-width: 100%;
+  min-height: 400px;
+  box-shadow: 2px 2px 8px 1px #aaa5a5;
+  margin: auto;
+}
+
+.cardShow {
+  text-align: center;
+  margin: auto;
+}
+
+/* comments section*/
+
+.commentTitle {
+  font-size: 10px;
+  color: rgb(148, 145, 145);
+  margin-bottom: 2px;
+}
+
+.commentBtnContainer {
+  display: flex;
+  justify-content: left;
+  margin-right: 295px;
+}
+
+.btnComment {
+  font-size: 8px;
+  color: white;
+  padding: 4px;
+  background-color: cadetblue;
+  text-transform: none;
+  border: solid white;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.btnComment:hover {
+  color: cadetblue;
+  background-color: white;
+  border-color: cadetblue;
+}
+
+.commentBox {
+  background-color: white;
+  border-radius: 4px;
+  border: 2px solid #dedede;
+  width: auto;
+  font-size: 10px;
 }

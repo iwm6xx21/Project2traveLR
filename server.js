@@ -10,14 +10,17 @@ const methodOverride = require('method-override')
 
 
 
+
 // Public Folder setup
 app.use(express.static('public'))
+
+app.use(express.urlencoded({extended:false}));
+app.use(express.json())
 
 // method-override set up
 app.use(methodOverride('_method'))
 
-app.use(express.urlencoded({extended:false}));
-app.use(express.json())
+
 
 
 //express layout setup
@@ -35,11 +38,12 @@ app.use(session({
 }))
 
 
-// this will ensure req.session.username is available in all views. VERY Important to page rendering
+// this will ensure req.session objects are available in all views. VERY Important to page rendering
 app.use((req, res, next)=> {
     res.locals.username = req.session.username
     res.locals.loggedIn = req.session.loggedIn
     res.locals.id = req.session.id
+    res.locals.author = req.session.author
     next()
 })
 

@@ -8,7 +8,7 @@ const Post = require('../models/post')
 
 
 
-// route for posting new user information to database and giving new user access to home page. 
+// route for posting new user information to database, giving new user access to home page, and automatically logging them in for the best user experience. 
 //bcrypt added to password data to keep password secure
 // conditional statements added to ensure username is not already taken and the 'Verify-Password' field matches what was entered into the initial 'password' field. 
 
@@ -27,6 +27,7 @@ router.post('/signup', async (req, res, next) => {
                 req.body.password = hashedPassword
                 const createdUser = await User.create(req.body)
                 req.session.username = createdUser.username
+                // auto login after signup for best user experience.
                 req.session.loggedIn = true
                 res.redirect('/home')
             }
@@ -53,7 +54,10 @@ router.post('/login', async (req, res, next) => {
             if (validPassword) {
                 req.session.username = userLogin.username
                 req.session.loggedIn = true
-                res.redirect('/home')
+                // the below code will return a user that is not logged in to their initial request once they are logged in. 
+                const redirectUrl = req.session.returnTo || '/home';
+                delete req.session.returnTo;
+                res.redirect(redirectUrl)
             } else {
                 req.session.message = "Incorrect username or password"
                 res.redirect('/')
@@ -72,7 +76,7 @@ router.post('/login', async (req, res, next) => {
 
 router.get('/logout', (req, res) => {
     req.session.destroy()
-    res.redirect('/')
+    res.redirect('/home')
 })
 
 

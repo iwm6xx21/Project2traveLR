@@ -3,7 +3,11 @@
 
 <body class = home>
     <div class = "logout">
+        <% if(username && loggedIn) { %>
         <a href="/session/logout"><button class = btnLogout>Logout</button></a>
+        <% } else  { %>
+            <a href="/"><button class = btnLogout>Login</button></a>
+            <% } %> 
         <p class ="homelogo">trave<span class ="logoSpan">LR </span></p>
     </div>
         <div class = "welcome">
@@ -14,7 +18,7 @@
             <a href="/new"> <button class = "postButton">New Post</button>
         </div>
         <% if (username) {%> 
-            <p class ="username">Welcome, <span class ="usernameSpan"><%= username %>!</span></p>
+            <p class ="username">Hello, <span class ="usernameSpan"><%= username %>!</span></p>
         <%} %>
         <div class = homecontainer> </a>
             <% posts.forEach((post, index) => { %>
@@ -28,21 +32,19 @@
                             <ul>
                                 <li class = li>
                                     <button class = menuBtn>
-                                        <a class = "menuFont" href="/home/<%= post.id %>/edit">Edit Item</a> 
+                                        <a class = "menuFont"  href="/home/<%= post._id %>">Go to post</a> 
                                     </button>
                                 </li>
                                 <li class = li>
                                     <button class = menuBtn>
-                                        <form action="/<%=post.id%>?_method=DELETE" method ="POST">
-                                            <input type="submit" value="Delete" class = "menuFont" id ="btnDelete">
-                                        </form>
+                                        <a  class = "menuFont" href="">Coming soon</a>
                                     </button>
                                 </li>
                             </ul>
                         </nav>
                 </div>
                 <div class = "image">
-                    <img src="<%= post.img %>" alt=""> 
+                    <a href="/home/<%= post._id %> "><img src="<%= post.img %>" alt=""></a>
         
                 </div>
                 <div class ="caption">
@@ -50,6 +52,9 @@
                 </div>
                 <div class ="timestamp">
                     Posted:<%= post.createdAt.toLocaleDateString()%> 
+                </div>
+                <div class ="timestamp">
+                    Posted By:<%=post.user%> 
                 </div>
             </div>
 <%})%>
