@@ -38,8 +38,9 @@
                 </nav>
         </div>
         <div class = "image">
-            <a href="/home/<%= posts._id %> "><img class =showImg src="<%= posts.img %>" alt=""></a>
-
+            <% for (let image of posts.img) {%>
+                <a href="/home/<%= posts._id %> "><img class =showImg src="<%= image.url %>" alt=""></a>
+                <% } %> 
             </div>
                 <div class ="captionShow">
                 <%= posts.description %> 

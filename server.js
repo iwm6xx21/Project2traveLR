@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
-const {Port, SESSION_SECRET} = process.env
+const {Port, SESSION_SECRET, CLOUDINARY_CLOUD_NAME, CLOUDINARY_KEY, CLOUDINARY_SECRET } = process.env
 const expressLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 const appsController = require('./controllers/appsController')

@@ -6,7 +6,12 @@ const {Schema} = mongoose;
 
 const postSchema = new Schema({
     location: {type: String}, 
-    img: {type: String, required: true},
+    img: [
+        {
+            url: String,
+            filename: String
+        }
+    ],
     description: {type: String},
     createdAt: {
         type: Date,

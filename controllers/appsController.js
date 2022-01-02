@@ -6,7 +6,8 @@ const User = require('../models/user')
 const Comment = require('../models/comments')
 const {authRequired} = require('../middleware')
 const multer = require('multer');
-const upload = multer({dest: 'uploads/'});
+const {storage} = require('../cloudinary')
+const upload = multer({storage});
 
 
 
@@ -24,23 +25,21 @@ router.get('/new', authRequired, (req, res)=> {
 })
 
 // route to post new picture upload data to database. Must be logged in access. 
-router.post('/home',upload.single('img'), (req,res, next) => {
-    console.log(req.body, req.file)
-    res.send("It Worked")
-    // Post.create(req.body, (err, posts) => {
-    //     const postedBy = req.session.username
-    //     req.session.message = `${postedBy} your adventure has been posted!`
-    //     res.redirect('/home')
+router.post('/home',upload.array('img'),async (req,res, next) => {
+        const posts = new Post(req.body.post);
+        posts.img = req.files.map(f => ({url: f.path, filename: f.filename}))
+        await posts.save();
+        const postedBy = req.session.username
+        req.session.message = `${postedBy} your adventure has been posted!`
+        res.redirect('/home')
             
-    //     })
-})
+    });
 
 
 // route to obtain new post data from database and render them to the home page
-router.get('/home', (req, res)=> {
-    Post.find({}, (err, posts) => {
+router.get('/home', async (req, res)=> {
+    const posts = await Post.find({});
         res.render('home', {posts})
-    })
 })
 
 

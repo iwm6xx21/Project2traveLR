@@ -44,8 +44,9 @@
                         </nav>
                 </div>
                 <div class = "image">
-                    <a href="/home/<%= post._id %> "><img src="<%= post.img %>" alt=""></a>
-        
+                    <% for (let image of post.img) {%>
+                        <a href="/home/<%= post._id %> "><img src="<%= image.url %>" alt=""></a>
+                        <% } %> 
                 </div>
                 <div class ="caption">
                     <%= post.description %> 

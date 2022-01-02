@@ -396,6 +396,8 @@ footer a {
 
 .image img {
   border-radius: 2px;
+  border: solid gray;
+  border-width: thin;
 }
 
 img {
