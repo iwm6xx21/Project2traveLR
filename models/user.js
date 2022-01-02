@@ -6,13 +6,6 @@ const {Schema} = mongoose;
 const userSchema = new Schema({
     username: {type: String, unique: true, required: true}, 
     password: {type: String, required: true},
-    post: [
-        {
-        type: Schema.Types.ObjectId,
-        ref: 'Post'
-    },
-    ]
-
 });
 
 const User = mongoose.model('User', userSchema);

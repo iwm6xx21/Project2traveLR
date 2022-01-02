@@ -503,10 +503,6 @@ button:focus + .menu {
 /* show page styling*/
 
 .timestampShow {
-  /* display: flex;
-  justify-content: center;
-  justify-content: space-between; */
-  /* border: solid red; */
   font-size: 15px;
   color: lightgray;
   margin-top: 10px;
@@ -514,6 +510,14 @@ button:focus + .menu {
   margin: auto;
 
   /* margin-bottom: 10px; */
+}
+
+.captionShow {
+  margin-top: auto;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: gray;
+  text-align: center;
 }
 
 .showImg {
@@ -527,7 +531,7 @@ button:focus + .menu {
   border-radius: 15px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
-  overflow: hidden;
+  overflow: scroll;
   width: 600px;
   max-width: 100%;
   min-height: 400px;
@@ -542,16 +546,17 @@ button:focus + .menu {
 
 /* comments section*/
 
-.commentTitle {
-  font-size: 10px;
-  color: rgb(148, 145, 145);
-  margin-bottom: 2px;
-}
-
 .commentBtnContainer {
   display: flex;
   justify-content: left;
   margin-right: 295px;
+}
+
+.commentsCard {
+  border: solid cadetblue;
+  margin: 8px;
+  border-radius: 2px;
+  border-width: thin;
 }
 
 .btnComment {
@@ -577,4 +582,44 @@ button:focus + .menu {
   border: 2px solid #dedede;
   width: auto;
   font-size: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+.usercommentsContainer {
+  text-align: left;
+  /* border: solid red; */
+
+  /* margin-left: 8px;
+  margin-top: 8px; */
+  margin: 8px;
+}
+
+.commentText {
+  margin: 0;
+  font-size: 12px;
+}
+
+.commentDate {
+  margin: 0;
+  font-size: 12px;
+}
+
+.commentSpan {
+  color: gainsboro;
+}
+
+/* delete form on comments */
+.btnCommentDelete {
+  font-size: 8px;
+  color: gainsboro;
+  padding: 0px;
+  background-color: white;
+  text-transform: none;
+  border: solid white;
+}
+
+.btnCommentDelete:hover {
+  color: cadetblue;
+  background-color: white;
+  border-color: white;
 }

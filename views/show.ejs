@@ -2,8 +2,12 @@
 <body class = home>
 
     <div class = "logout">
-        <a href="/home/"><button class = btnLogout>Home</button></a>
-        <p class ="homelogo">trave<span class ="logoSpan">LR </span></p>
+        <% if(username && loggedIn) { %>
+            <a href="/home/"><button class = btnLogout>Home</button></a>
+            <% } else  { %>
+                <a href="/"><button class = btnLogout>Login</button></a>
+                <% } %> 
+            <p class ="homelogo">trave<span class ="logoSpan">LR </span></p>
     </div>
     <div class ="timestampShow">
         <p>Posted By:<%=posts.author%> </p>
@@ -20,7 +24,7 @@
                     <ul>
                         <li class = li>
                             <button class = menuBtn>
-                                <a class = "menuFont" id ="btnDelete" href="/home/<%= posts.id %>/edit">Edit Item</a> 
+                                <a class = "menuFont" id ="btnDelete" href="/home/<%= posts.id %>/edit">Edit Post</a> 
                             </button>
                         </li>
                         <li class = li>
@@ -37,19 +41,39 @@
             <a href="/home/<%= posts._id %> "><img class =showImg src="<%= posts.img %>" alt=""></a>
 
             </div>
-                <div class ="caption">
+                <div class ="captionShow">
                 <%= posts.description %> 
             </div>
             
         </div>
             <div class ="commentContainer">
                 <form action="/home/<%=posts._id%>/comments" method ="POST">
-                    <h5 class = "commentTitle">Add a comment...</h5>
-                        <textarea required class ="commentBox" name="comment" id="body" cols="50" rows="3"></textarea>
+                        <textarea required class ="commentBox" name="comment" id="comment" cols="70" rows="4" placeholder="Add a comment..."></textarea>
                         <div class = "commentBtnContainer">
                             <button class ="btnComment">Post</button>
                         </div>
                 </form>
+               <% for (let comment of posts.comments) {%> 
+                <div class = commentsCard>
+                    <div class = usercommentsContainer>
+                        <p class = commentText> <span class = "commentSpan">Comment:</span> <%= comment.comment%> </p>
+                    
+                        <p class = commentDate> <span class = "commentSpan">Posted:</span> <%= comment.createdAt.toLocaleDateString()%></p>
+                            <div class ="menuBarDiv">
+                                <button class = testbtn><img class ="menuBar" src="/images/ellipsis.png" alt=""></button>
+                                <nav class="menu">
+                                    <ul>
+                                        <li class = li>
+                                            <form action="/home/<%= posts._id%>/comments/<%=comment._id%>?_method=DELETE" method = "POST">
+                                                <button class = "btnCommentDelete">Delete Comment</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </nav>
+                        </div>
+                    </div>
+                </div>
+            <% } %> 
             </div>
     </div>
 
