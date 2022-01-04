@@ -11,6 +11,7 @@
   background-color: rgb(235, 110, 110);
   border-radius: 4px;
   text-align: center;
+  padding: 2px;
 }
 
 .logoSpan {
@@ -57,7 +58,7 @@ h2 {
   text-align: center;
 }
 
-p {
+.loginP {
   font-size: 14px;
   font-weight: 100;
   line-height: 20px;
@@ -123,6 +124,7 @@ input {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
+  overflow: auto;
   width: 600px;
   max-width: 100%;
   min-height: 400px;
@@ -255,31 +257,6 @@ input {
   width: 40px;
 }
 
-footer {
-  background-color: #222;
-  color: #fff;
-  font-size: 14px;
-  bottom: 0;
-  position: fixed;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 999;
-}
-
-footer p {
-  margin: 10px 0;
-}
-
-footer i {
-  color: red;
-}
-
-footer a {
-  color: #3c97bf;
-  text-decoration: none;
-}
-
 /*home page styliong*/
 
 .home {
@@ -345,7 +322,7 @@ footer a {
   margin-top: 0px;
   color: gray;
   font-size: 20px;
-  font-family: "Secular One", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .homecontainer {
@@ -357,8 +334,7 @@ footer a {
   width: 1000px;
   max-width: 100%;
   min-height: 400px;
-  /* overflow: auto; */
-  box-shadow: 2px 2px 8px 1px #aaa5a5;
+  box-shadow: 2px 2px 6px 1px #aaa5a5;
   display: flex;
   flex-wrap: wrap;
   margin: auto;
@@ -390,20 +366,25 @@ footer a {
 
 .menuBarDiv {
   text-align: center;
+
   /* margin-right: 30px;
   margin-left: 30px; */
 }
 
 .image img {
-  border-radius: 2px;
-  border: solid gray;
-  border-width: thin;
+  border-radius: 4px;
+  /* border: solid gainsboro; */
 }
 
 img {
   width: 250px;
   height: 250px;
   object-fit: cover;
+}
+
+img:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0);
+  box-shadow: 0px 8px 6px -6px #413d3d;
 }
 
 .caption {
@@ -426,11 +407,47 @@ img {
 
 /* edit page styling*/
 
+.editcontainer {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  overflow: auto;
+  width: 600px;
+  max-width: 100%;
+  min-height: 400px;
+  margin-bottom: 20px;
+}
+
 .btnBack {
   margin-bottom: 10px;
   padding: 5px;
   background-color: #aaa5a5;
   border-color: #aaa5a5;
+}
+
+.editbtn {
+  margin-bottom: 10px;
+}
+
+/* .editImg {
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  justify-content: center;
+  align-items: center;
+} */
+
+.editcheck {
+  font-size: 10px;
+  padding: 0px;
+}
+
+.checkbox {
+  background-color: green;
+  margin: 0px;
+  border: solid green;
 }
 
 /* menu bar code for edit and delete*/
@@ -502,17 +519,33 @@ button:focus + .menu {
   color: cadetblue;
 }
 
-/* show page styling*/
+/* footer styling*/
 
-.timestampShow {
-  font-size: 15px;
-  color: lightgray;
-  margin-top: 10px;
-  width: 600px;
-  margin: auto;
-
-  /* margin-bottom: 10px; */
+.footer-container {
+  display: flex;
+  justify-content: center;
 }
+
+.footer-container > div {
+  margin: 6px;
+}
+
+footer {
+  color: cadetblue;
+  font-size: 11px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin-top: 15px;
+  border-radius: 4px;
+}
+
+.footerP {
+  margin: 2px;
+}
+
+/* show page styling*/
 
 .captionShow {
   margin-top: auto;
@@ -530,10 +563,11 @@ button:focus + .menu {
 
 .showcontainer {
   background-color: #fff;
+  margin-top: 20px;
   border-radius: 15px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
-  overflow: scroll;
+  overflow: auto;
   width: 600px;
   max-width: 100%;
   min-height: 400px;
@@ -584,26 +618,24 @@ button:focus + .menu {
   border: 2px solid #dedede;
   width: auto;
   font-size: 10px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .usercommentsContainer {
   text-align: left;
-  /* border: solid red; */
-
-  /* margin-left: 8px;
-  margin-top: 8px; */
   margin: 8px;
 }
 
 .commentText {
   margin: 0;
   font-size: 12px;
+  font-family: "Inter", sans-serif;
 }
 
 .commentDate {
   margin: 0;
   font-size: 12px;
+  font-family: "Inter", sans-serif;
 }
 
 .commentSpan {
@@ -624,4 +656,16 @@ button:focus + .menu {
   color: cadetblue;
   background-color: white;
   border-color: white;
+}
+
+/*map syling*/
+
+#map {
+  width: 200px;
+  height: 100px;
+  margin: auto;
+  border: solid gainsboro;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  /* overflow: auto; */
 }

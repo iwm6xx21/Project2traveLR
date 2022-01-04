@@ -43,11 +43,11 @@
                             </ul>
                         </nav>
                 </div>
-                <div class = "image">
-                    <% for (let image of post.img) {%>
-                        <a href="/home/<%= post._id %> "><img src="<%= image.url %>" alt=""></a>
-                        <% } %> 
-                </div>
+                    <div class = "image">
+                        <% for (let image of post.img) {%>
+                            <a href="/home/<%= post._id %> "><img src="<%= image.url %>" alt=""></a>
+                            <% } %> 
+                    </div>
                 <div class ="caption">
                     <%= post.description %> 
                 </div>
@@ -55,10 +55,11 @@
                     Posted:<%= post.createdAt.toLocaleDateString()%> 
                 </div>
                 <div class ="timestamp">
-                    Posted By:<%=post.user%> 
+                    Posted By:<%=posts.author%> 
                 </div>
             </div>
 <%})%>
         </div>
+
     
 </body>

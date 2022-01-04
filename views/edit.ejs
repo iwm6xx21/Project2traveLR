@@ -3,17 +3,27 @@
 <a href="/home/">
     <button class="btnBack">Back Home</button>  
 </a>
-<div class="container" id="container">
+<div class="editcontainer" id="container">
 	<div>
-		<form action="/<%=posts.id%>?_method=PUT" method ='POST'>
+		<form class ="editForm" action="/<%=posts.id%>?_method=PUT" method ='POST' enctype="multipart/form-data">
 			<h1 class = postFormH1>Edit Post</h1>
             <label for="location">Location</label>
 			<input type="text" value="<%=posts.location%>" name ="location" id = "location" />
             <label for="Image">Image</label>
-			<input required  type="text" value="<%=posts.img%>" name ="img" id="img" />
+			<input type="file" name ="img" id="img"/>
+			<div>
+				<% posts.img.forEach((img, index) => {%>
+					<div class ="editImg">
+						<label class ="editcheck"  for="img-<%=index%>">Delete?</label>
+						<input class ="checkbox"  type="checkbox" id="img-<%=index%>" name="deleteImages[]" value ="<%=img.filename%> ">
+					<img src="<%= img.url %> " alt="">
+				
+				<%}) %> 
+			</div>
+		
             <label for="Description">Caption</label>
 			<input type="text" value="<%=posts.description%>" name ="description" id="description"> 
-			<button>Edit Post</button>
+			<button class = "editbtn">Edit Post</button>
 		</form>
 	</div>
 </div>

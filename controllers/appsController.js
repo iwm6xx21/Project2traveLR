@@ -8,6 +8,9 @@ const {authRequired} = require('../middleware')
 const multer = require('multer');
 const {storage} = require('../cloudinary')
 const upload = multer({storage});
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({accessToken: mapBoxToken})
 
 
 
@@ -24,11 +27,18 @@ router.get('/new', authRequired, (req, res)=> {
     res.render('new')
 })
 
-// route to post new picture upload data to database. Must be logged in access. 
+// route to post new picture upload data to database. Must be logged in to access. 
 router.post('/home',upload.array('img'),async (req,res, next) => {
+        const geoData = await geocoder.forwardGeocode({
+            query: req.body.post.location,
+            limit: 1
+        }).send()
         const posts = new Post(req.body.post);
+        posts.geometry = geoData.body.features[0].geometry;
         posts.img = req.files.map(f => ({url: f.path, filename: f.filename}))
+        posts.author = req.body.post._id
         await posts.save();
+        console.log(posts)
         const postedBy = req.session.username
         req.session.message = `${postedBy} your adventure has been posted!`
         res.redirect('/home')
@@ -54,7 +64,6 @@ router.get('/home', (req, res) => {
 // show route for handeling posts 
 router.get('/home/:id', (async(req, res,) => {
     const posts = await Post.findById(req.params.id).populate('comments').populate('author'); 
-    console.log(posts);
     res.render('show', {posts})
 
 }))
@@ -88,10 +97,15 @@ router.get('/home/:id/edit', authRequired,(req, res)=> {
 
 // post edits to database then redirect to the home page. Must be logged in access. 
 
-router.put('/:id', authRequired, (req, res) => {
-    Post.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedpost) =>{
-        res.redirect('/home')
-    })
+router.put('/:id', authRequired, upload.array('img'), async(req, res) => {
+    const posts = await Post.findByIdAndUpdate(req.params.id, req.body, {new: true}); 
+    const imgs = req.files.map(f => ({url: f.path, filename: f.filename}));
+    posts.img.push(...imgs)
+    await posts.save()
+    if(req.body.deleteImages) {
+        await posts.updateOne({ $pull: {img:{ filename:{ $in: req.body.deleteImages}}}})
+    }
+    res.redirect('/home')
 })
 
 // route to delete posted item. Must be logged in access. 
