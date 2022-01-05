@@ -1,0 +1,18 @@
+<div class = "logout">
+    <p class ="homelogo">
+        <a class = homelogo href="/home/">trave<span class ="logoSpan">LR </span></a>
+   </p>
+        <a href="/home/"><button class = btnLogout>Home</button></a>
+</div>
+
+
+<h1 class =mapH1>Destination Map</h1>
+<p class = map-P>TraverLR Community desinations</p>
+
+<div id="map" style="width: 80%; height: 400px;"></div>
+<script src="javascripts/mapCluster.js"></script>
+
+
+<script>
+   const posts = {features:<%-JSON.stringify(posts)%>} 
+</script>

@@ -4,6 +4,8 @@ const User = require('./user')
 const {Schema} = mongoose;
 //post schema for user database 
 
+const ops = {toJSON: {virtuals: true}};
+
 const postSchema = new Schema({
     location: {type: String}, 
     img: [
@@ -43,8 +45,15 @@ const postSchema = new Schema({
         }
 ]
 
-});
+}, ops);
 
+
+
+// access properties field in mapbox to render accurare popup box information on our user destinations map
+
+postSchema.virtual('properties.popUpMarkup').get(function () {
+    return `<a href="/home/${this._id}">${this.location}</a>`
+})
 
 // middleware to delete comments from database once a post is deleted
 

@@ -33,12 +33,13 @@ router.post('/home',upload.array('img'),async (req,res, next) => {
             query: req.body.post.location,
             limit: 1
         }).send()
+        const user = await User.find({username: req.body.author})
+        req.body.post.author = user._id
         const posts = new Post(req.body.post);
         posts.geometry = geoData.body.features[0].geometry;
         posts.img = req.files.map(f => ({url: f.path, filename: f.filename}))
-        posts.author = req.body.post._id
         await posts.save();
-        console.log(posts)
+        // console.log(posts)
         const postedBy = req.session.username
         req.session.message = `${postedBy} your adventure has been posted!`
         res.redirect('/home')
@@ -64,6 +65,7 @@ router.get('/home', (req, res) => {
 // show route for handeling posts 
 router.get('/home/:id', (async(req, res,) => {
     const posts = await Post.findById(req.params.id).populate('comments').populate('author'); 
+    console.log(posts)
     res.render('show', {posts})
 
 }))
@@ -117,6 +119,13 @@ router.delete('/:id', authRequired, (req, res) => {
     })
 })
 
+// cluster map that illustrates all locations users have visited
+
+router.get('/cluster', async (req, res) => {
+    const posts = await Post.find({});
+    console.log(posts)
+    res.render('mapCluster', ({posts}))
+})
 
 
 

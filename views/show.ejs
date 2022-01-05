@@ -2,16 +2,18 @@
 <body class = home>
 
     <div class = "logout">
+        <p class ="homelogo">
+            <a class = homelogo href="/home/">trave<span class ="logoSpan">LR </span></a>
+       </p>
         <% if(username && loggedIn) { %>
             <a href="/home/"><button class = btnLogout>Home</button></a>
             <% } else  { %>
                 <a href="/"><button class = btnLogout>Login</button></a>
                 <% } %> 
-            <p class ="homelogo">trave<span class ="logoSpan">LR </span></p>
     </div>
     <div class = showcontainer> </a>
         <div class = "cardShow">
-            <div class = "title">
+            <div class = "showtitle">
                 <%= posts.location %>
             </div> 
             <div class ="menuBarDiv">
@@ -44,12 +46,13 @@
             
         </div>
             <div class ="commentContainer">
-                <form action="/home/<%=posts._id%>/comments" method ="POST">
-                        <textarea required class ="commentBox" name="comment" id="comment" cols="60" rows="4" placeholder="Add a comment..."></textarea>
+                <form class = formcolor action="/home/<%=posts._id%>/comments" method ="POST">
+                        <textarea required class ="commentBox" name="comment" id="comment" cols="60" rows="4" placeholder="Add a comment..."></textarea> 
                         <div class = "commentBtnContainer">
                             <button class ="btnComment">Post</button>
                         </div>
                 </form>
+                
                <% for (let comment of posts.comments) {%> 
                 <div class = commentsCard>
                     <div class = usercommentsContainer>
