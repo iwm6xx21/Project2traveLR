@@ -21,7 +21,9 @@
             <div class = "showtitle">
                 <%= posts.location %>
             </div>  
+            
             <div class ="menuBarDiv">
+                <% if(loggedIn && posts.author[0].username === username) { %> 
                 <button class = testbtn><img class ="menuBar" src="/images/ellipsis.png" alt=""></button>
                 <nav class="menu">
                     <ul>
@@ -37,6 +39,7 @@
                                 </form>
                             </button>
                         </li>
+                        <% } %> 
                     </ul>
                 </nav>
         </div>
