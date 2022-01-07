@@ -1,4 +1,6 @@
-  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css"/>
+<script  src="https://code.jquery.com/jquery-3.6.0.js"></script> 
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" ></script>
 <body class = home>
 
     <div class = "logout">
@@ -12,10 +14,13 @@
                 <% } %> 
     </div>
     <div class = showcontainer> </a>
+        <div class = "authortitle">
+            Posted By: <span class ="usernameSpan"><%= posts.author[0].username %></span>
+        </div>
         <div class = "cardShow">
             <div class = "showtitle">
                 <%= posts.location %>
-            </div> 
+            </div>  
             <div class ="menuBarDiv">
                 <button class = testbtn><img class ="menuBar" src="/images/ellipsis.png" alt=""></button>
                 <nav class="menu">
@@ -47,7 +52,7 @@
         </div>
             <div class ="commentContainer">
                 <form class = formcolor action="/home/<%=posts._id%>/comments" method ="POST">
-                        <textarea required class ="commentBox" name="comment" id="comment" cols="60" rows="4" placeholder="Add a comment..."></textarea> 
+                        <textarea required class ="commentBox" name="comment" id="comment" cols="30" rows="4" placeholder="Add a comment..."></textarea> 
                         <div class = "commentBtnContainer">
                             <button class ="btnComment">Post</button>
                         </div>
@@ -85,5 +90,7 @@
         </script>
 
         <script src="/javascripts/map.js"></script>
+        <script src="/javascripts/emoji.js"></script>
+       
     </div>
 </body>

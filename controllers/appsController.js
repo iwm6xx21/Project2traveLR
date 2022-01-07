@@ -1,10 +1,10 @@
 const express = require('express')
-// const { Mongoose } = require('mongoose')
 const router = express.Router()
 const Post = require('../models/post')
 const User = require('../models/user')
 const Comment = require('../models/comments')
 const {authRequired} = require('../middleware')
+const {authRequiredDelete} = require('../middleware')
 const multer = require('multer');
 const {storage} = require('../cloudinary')
 const upload = multer({storage});
@@ -34,7 +34,7 @@ router.post('/home',upload.array('img'),async (req,res, next) => {
             limit: 1
         }).send()
         const user = await User.find({username: req.body.author})
-        req.body.post.author = user._id
+        req.body.post.author = user[0]._id
         const posts = new Post(req.body.post);
         posts.geometry = geoData.body.features[0].geometry;
         posts.img = req.files.map(f => ({url: f.path, filename: f.filename}))
@@ -45,6 +45,10 @@ router.post('/home',upload.array('img'),async (req,res, next) => {
         res.redirect('/home')
             
     });
+
+//     const comment = new Comment(req.body)
+//    posts.comments.push(comment)
+//     await comment.save();
 
 
 // route to obtain new post data from database and render them to the home page
@@ -112,7 +116,7 @@ router.put('/:id', authRequired, upload.array('img'), async(req, res) => {
 
 // route to delete posted item. Must be logged in access. 
 
-router.delete('/:id', authRequired, (req, res) => {
+router.delete('/:id', authRequiredDelete, (req, res) => {
     Post.findByIdAndDelete(req.params.id, (err, deletedItem) => {
         req.session.message = "Your post has been deleted"
         res.redirect('/home')

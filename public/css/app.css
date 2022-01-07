@@ -16,7 +16,7 @@
 
 .logoSpan {
   color: white;
-  text-shadow: -1px -1px 0 cadetblue, 1px -1px 0 cadetblue, -1px 1px 0 cadetblue,
+  text-shadow: 1px 1px 0 cadetblue, 1px 1px 0 cadetblue, 1px 1px 0 cadetblue,
     1px 1px 0 cadetblue;
 }
 
@@ -276,19 +276,18 @@ input {
 }
 
 .btnLogout {
-  background-color: ghostwhite;
+  background-color: white;
   color: cadetblue;
   border-color: cadetblue;
   padding: 5px;
   margin-left: 40px;
   text-transform: none;
-  /* margin-top: 2000px; */
 }
 
 .btnLogout:hover {
   background-color: cadetblue;
-  color: ghostwhite;
-  border-color: ghostwhite;
+  color: white;
+  border-color: white;
 }
 
 .username {
@@ -308,11 +307,11 @@ input {
 }
 
 .postButton {
-  padding: 10px;
+  padding: 8px;
 }
 
 .postButton:hover {
-  background-color: ghostwhite;
+  background-color: white;
   color: cadetblue;
   border-color: cadetblue;
 }
@@ -559,12 +558,20 @@ footer {
 /* show page styling*/
 
 .showtitle {
-  font-size: 18px;
+  font-size: 15px;
   margin-top: 5px;
   margin-bottom: 5px;
   text-align: center;
   color: cadetblue;
   font-family: "Inter", sans-serif;
+}
+
+.authortitle {
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 4px;
+  font-size: 12px;
+  color: gainsboro;
 }
 
 .captionShow {
@@ -606,7 +613,7 @@ footer {
 .commentBtnContainer {
   display: flex;
   justify-content: left;
-  margin-right: 295px;
+  align-items: left;
   background-color: ghostwhite;
 }
 
@@ -619,18 +626,18 @@ footer {
 
 .btnComment {
   font-size: 8px;
-  color: ghostwhite;
+  color: white;
   padding: 4px;
   background-color: cadetblue;
   text-transform: none;
-  border: solid ghostwhite;
+  border: solid white;
   margin-top: 2px;
   margin-bottom: 2px;
 }
 
 .btnComment:hover {
   color: cadetblue;
-  background-color: ghostwhite;
+  background-color: white;
   border-color: cadetblue;
 }
 
@@ -652,6 +659,14 @@ footer {
   margin: 0;
   font-size: 12px;
   font-family: "Inter", sans-serif;
+}
+
+.emojionearea .emojionearea-editor:empty:before {
+  text-align: left;
+}
+
+.emojionearea .emojionearea-editor {
+  text-align: left;
 }
 
 .commentDate {
@@ -724,4 +739,20 @@ emoji-picker {
   cursor: pointer;
   background-color: transparent;
   display: none;
+}
+
+/* mapbox popup syling*/
+
+/* add color to mapbob caption*/
+.mapaTag {
+  color: cadetblue;
+}
+
+/* cluster map styling */
+
+#mapCluster {
+  width: 80%;
+  height: 400px;
+  margin: auto;
+  border-radius: 4px;
 }

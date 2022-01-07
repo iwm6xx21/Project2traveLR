@@ -52,7 +52,7 @@ const postSchema = new Schema({
 // access properties field in mapbox to render accurare popup box information on our user destinations map
 
 postSchema.virtual('properties.popUpMarkup').get(function () {
-    return `<a href="/home/${this._id}">${this.location}</a>`
+    return `<a class ="mapaTag" href="/home/${this._id}">${this.location}</a>`
 })
 
 // middleware to delete comments from database once a post is deleted

@@ -2,11 +2,14 @@
 
 	mapboxgl.accessToken = 'pk.eyJ1IjoiaXNwb29uMjEiLCJhIjoiY2t4ejQ2cHplNHY5bjJ1cG40NDg0NG1nYSJ9.luBIQ7oT1zj5KHn1mHzRXg';
 const map = new mapboxgl.Map({
-container: 'map',
+container: 'mapCluster',
 style: 'mapbox://styles/mapbox/light-v10',
 center: [-103.5917, 40.6699],
 zoom: 3
 });
+
+// Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl());
  
 map.on('load', () => {
 // Add a new source from our GeoJSON data and
