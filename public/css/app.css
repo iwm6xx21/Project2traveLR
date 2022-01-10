@@ -316,6 +316,10 @@ input {
   border-color: cadetblue;
 }
 
+.btnNew {
+  margin-top: 10px;
+}
+
 #homeH2 {
   text-align: center;
   margin-top: 0px;
@@ -427,6 +431,7 @@ img:hover {
 }
 
 .editbtn {
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 

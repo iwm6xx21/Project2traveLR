@@ -75,7 +75,8 @@ router.post('/home/:id/comments', authRequiredDelete, async (req, res)=> {
    const posts = await Post.findById(req.params.id);
 //    const user = await User.find({username: req.body.author}) // needs work on input
 //    console.log(user)
-//    req.body.comment.author = user[0]._id
+const user = await User.find({username: req.body.author})
+console.log(user)
    const comment = new Comment(req.body)
    console.log(comment)
    posts.comments.push(comment) 
