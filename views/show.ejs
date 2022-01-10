@@ -57,6 +57,7 @@
                 <form class = formcolor action="/home/<%=posts._id%>/comments" method ="POST">
                         <textarea required class ="commentBox" name="comment" id="comment" cols="30" rows="4" placeholder="Add a comment..."></textarea> 
                         <div class = "commentBtnContainer">
+                            <!-- <input type="text" name ="author" id="author" style="display: none;" value=<%=username%> >  -->
                             <button class ="btnComment">Post</button>
                         </div>
                 </form>
@@ -64,9 +65,10 @@
                <% for (let comment of posts.comments) {%> 
                 <div class = commentsCard>
                     <div class = usercommentsContainer>
-                        <p class = commentText> <span class = "commentSpan">Comment:</span> <%= comment.comment%> </p>
+                        <p class = commentText> <span class = "commentSpan"><%= comment.author%> commented:</span> <%= comment.comment%> </p>
                     
-                        <p class = commentDate> <span class = "commentSpan">Posted:</span> <%= comment.createdAt.toLocaleDateString()%></p>
+                        <p class = commentDate> <span class = "commentSpan"> Posted:</span> <%= comment.createdAt.toLocaleDateString()%></p>
+                        <% if(loggedIn && posts.author[0].username === username) { %> 
                             <div class ="menuBarDiv">
                                 <button class = testbtn><img class ="menuBar" src="/images/ellipsis.png" alt=""></button>
                                 <nav class="menu">
@@ -78,7 +80,9 @@
                                         </li>
                                     </ul>
                                 </nav>
-                        </div>
+                       
+                            </div>
+                        <% }  %> 
                     </div>
                 </div>
             <% } %> 

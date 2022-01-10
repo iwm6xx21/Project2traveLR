@@ -41,14 +41,11 @@ router.post('/home',upload.array('img'),async (req,res, next) => {
         await posts.save();
         // console.log(posts)
         const postedBy = req.session.username
-        req.session.message = `${postedBy} your adventure has been posted!`
+        req.session.message = `Hey ${postedBy}, your adventure has been posted!`
         res.redirect('/home')
             
     });
 
-//     const comment = new Comment(req.body)
-//    posts.comments.push(comment)
-//     await comment.save();
 
 
 // route to obtain new post data from database and render them to the home page
@@ -68,17 +65,20 @@ router.get('/home', (req, res) => {
 
 // show route for handeling posts 
 router.get('/home/:id', (async(req, res,) => {
-    const posts = await Post.findById(req.params.id).populate('comments').populate('author'); 
-    console.log(posts)
+    const posts = await Post.findById(req.params.id).populate('comments').populate('author');
     res.render('show', {posts})
 
 }))
 
 // post comments route on show page
-router.post('/home/:id/comments', authRequired, async (req, res)=> {
+router.post('/home/:id/comments', authRequiredDelete, async (req, res)=> {
    const posts = await Post.findById(req.params.id);
+//    const user = await User.find({username: req.body.author}) // needs work on input
+//    console.log(user)
+//    req.body.comment.author = user[0]._id
    const comment = new Comment(req.body)
-   posts.comments.push(comment)
+   console.log(comment)
+   posts.comments.push(comment) 
     await comment.save();
     await posts.save();
     res.redirect(`/home/${posts._id}`);
@@ -86,7 +86,7 @@ router.post('/home/:id/comments', authRequired, async (req, res)=> {
 
 // delete route for comments 
 
-router.delete('/home/:id/comments/:commentId', async (req, res)=> {
+router.delete('/home/:id/comments/:commentId', authRequiredDelete, async (req, res)=> {
     const {id, commentId} = req.params;
     await Post.findByIdAndUpdate(id, {$pull:{comments: commentId}});
     await Comment.findByIdAndDelete(commentId);
@@ -94,14 +94,14 @@ router.delete('/home/:id/comments/:commentId', async (req, res)=> {
 })
 
 
-// route to edit form. Must be logged in access. 
+// route to edit form. Must be logged in to access. 
 router.get('/home/:id/edit', authRequired,(req, res)=> {
     Post.findById(req.params.id, (err, posts) => {
         res.render('edit', {posts})
     }) 
 })
 
-// post edits to database then redirect to the home page. Must be logged in access. 
+// post edits to database then redirect to the home page. Must be logged in to access. 
 
 router.put('/:id', authRequired, upload.array('img'), async(req, res) => {
     const posts = await Post.findByIdAndUpdate(req.params.id, req.body, {new: true}); 
@@ -114,7 +114,7 @@ router.put('/:id', authRequired, upload.array('img'), async(req, res) => {
     res.redirect('/home')
 })
 
-// route to delete posted item. Must be logged in access. 
+// route to delete posted item. Must be logged in to access. 
 
 router.delete('/:id', authRequiredDelete, (req, res) => {
     Post.findByIdAndDelete(req.params.id, (err, deletedItem) => {
@@ -127,7 +127,6 @@ router.delete('/:id', authRequiredDelete, (req, res) => {
 
 router.get('/cluster', async (req, res) => {
     const posts = await Post.find({});
-    console.log(posts)
     res.render('mapCluster', ({posts}))
 })
 
