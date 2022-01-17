@@ -39,7 +39,6 @@ router.post('/home',upload.array('img'),async (req,res, next) => {
         posts.geometry = geoData.body.features[0].geometry;
         posts.img = req.files.map(f => ({url: f.path, filename: f.filename}))
         await posts.save();
-        // console.log(posts)
         const postedBy = req.session.username
         req.session.message = `Hey ${postedBy}, your adventure has been posted!`
         res.redirect('/home')
@@ -65,7 +64,13 @@ router.get('/home', (req, res) => {
 
 // show route for handeling posts 
 router.get('/home/:id', (async(req, res,) => {
-    const posts = await Post.findById(req.params.id).populate('comments').populate('author');
+    const posts = await Post.findById(req.params.id).populate({
+        path:'comments',
+        populate:{
+            path: 'author'
+        }
+    }).populate('author');
+    console.log(posts.comments)
     res.render('show', {posts})
 
 }))
@@ -73,16 +78,13 @@ router.get('/home/:id', (async(req, res,) => {
 // post comments route on show page
 router.post('/home/:id/comments', authRequiredDelete, async (req, res)=> {
    const posts = await Post.findById(req.params.id);
-//    const user = await User.find({username: req.body.author}) // needs work on input
-//    console.log(user)
-const user = await User.find({username: req.body.author})
-console.log(user)
-   const comment = new Comment(req.body)
-   console.log(comment)
+   const username = await User.find({username: req.body.author})
+   req.body.author = username[0]._id
+   const comment = new Comment(req.body) 
    posts.comments.push(comment) 
     await comment.save();
     await posts.save();
-    res.redirect(`/home/${posts._id}`);
+    res.redirect(`/home/${posts._id}`)
 })
 
 // delete route for comments 

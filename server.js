@@ -7,6 +7,7 @@ const session = require('express-session')
 const appsController = require('./controllers/appsController')
 const sessionsController = require('./controllers/sessionsController')
 const methodOverride = require('method-override')
+const mongoSanitize = require('express-mongo-sanitize');
 
 
 
@@ -14,11 +15,14 @@ const methodOverride = require('method-override')
 // Public Folder setup
 app.use(express.static('public'))
 
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:true}));
 app.use(express.json())
 
 // method-override set up
 app.use(methodOverride('_method'))
+
+//using mongo sanatize package
+app.use(mongoSanitize());
 
 
 
@@ -67,6 +71,8 @@ app.use(routeHit)
 //setting up controllers on server
 app.use('/', appsController)
 app.use('/session', sessionsController)
+
+
 
 
 // port setup

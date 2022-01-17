@@ -1,6 +1,3 @@
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css"/>
-<script  src="https://code.jquery.com/jquery-3.6.0.js"></script> 
-<script  src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" ></script> -->
 <body class = home>
 
     <div class = "logout">
@@ -51,23 +48,21 @@
                 <div class ="captionShow">
                 <%= posts.description %> 
             </div>
-            
         </div>
             <div class ="commentContainer">
                 <form class = formcolor action="/home/<%=posts._id%>/comments" method ="POST">
                         <textarea required class ="commentBox" name="comment" id="comment" cols="30" rows="4" placeholder="Add a comment..."></textarea> 
+                        <input type="text" name ="author" id="author" style="display: none;" value="<%=username%>">
                         <div class = "commentBtnContainer">
-                            <!-- <input type="text" name ="author" id="author" style="display: none;" value=<%=username%> >  -->
                             <button class ="btnComment">Post</button>
                         </div>
                 </form> 
                <% for (let comment of posts.comments) {%> 
                 <div class = commentsCard>
                     <div class = usercommentsContainer>
-                        <p class = commentText> <span class = "commentSpan"><%= comment.author%> commented:</span> <%= comment.comment%> </p>
-                    
+                        <p class = commentText> <span class ="usernameSpan"><%=comment.author[0].username%></span>: <%= comment.comment%> </p>
                         <p class = commentDate> <span class = "commentSpan"> Posted:</span> <%= comment.createdAt.toLocaleDateString()%></p>
-                        <% if(loggedIn && posts.author[0].username === username) { %> 
+                        <% if(loggedIn && posts.author[0].username === username || loggedIn && comment.author[0].username === username) { %> 
                             <div class ="menuBarDiv">
                                 <button class = testbtn><img class ="menuBar" src="/images/ellipsis.png" alt=""></button>
                                 <nav class="menu">

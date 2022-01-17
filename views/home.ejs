@@ -1,5 +1,4 @@
 
-
 <body class = home>
     <div class = "logout">
         <p class ="homelogo">
@@ -46,12 +45,20 @@
                 </div>
                     <div class = "image">
                         <% for (let image of post.img) {%>
-                            <a href="/home/<%= post._id %> "><img src="<%= image.url %>"alt=""></a>
+                        <a href="/home/<%= post._id %> "><img src="<%= image.url %>"alt=""></a>
                             <% } %> 
                     </div>
-                    
+                    <!-- <div class = "likes">
+                        <div class = "likesDiv">
+                        <i class="material-icons" id = "likesIcon" style="font-size:14px; color:gray;">favorite_border</i>
+                        </div>
+                        <div class = "likesDiv">
+                         <h6 class = likesText>likes</h6>
+                        </div>
+                    </div> -->
                 <div class ="caption">
                     <%= post.description %> 
+                    
                 </div>
                 <div class ="timestamp">
                     Posted:<%= post.createdAt.toLocaleDateString()%> 

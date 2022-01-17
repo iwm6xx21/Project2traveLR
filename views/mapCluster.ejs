@@ -11,12 +11,12 @@
 <h1 class =mapH1> <i class="material-icons" style="font-size:35px; color:red;">location_on</i>Destination Map</h1>
 <p class = map-P>TraverLR Community desinations</p>
 
+<script>
+    const mapToken ='<%-process.env.MAPBOX_TOKEN%>'
+  const posts = {features:<%-JSON.stringify(posts)%>} 
+</script>
+
 <div id="mapCluster"></div>
 <script src="javascripts/mapCluster.js"></script>
-
-
-<script>
-   const posts = {features:<%-JSON.stringify(posts)%>} 
-</script>
 
 </body>

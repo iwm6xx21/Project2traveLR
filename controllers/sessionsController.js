@@ -9,7 +9,7 @@ const Post = require('../models/post')
 
 
 // route for posting new user information to database, giving new user access to home page, and automatically logging them in for the best user experience. 
-//bcrypt added to password data to keep password secure
+//bcrypt & hash added to password data to keep password secure
 // conditional statements added to ensure username is not already taken and the 'Verify-Password' field matches what was entered into the initial 'password' field. 
 
 router.post('/signup', async (req, res, next) => {
@@ -43,8 +43,6 @@ router.post('/signup', async (req, res, next) => {
 
 // route for existing user login
 // conditional statements added to ensure username and password entered is correct 
-// test example1 -  username: testy password: two
-// test example1 -  username: will password: iam
 
 router.post('/login', async (req, res, next) => {
     try {
