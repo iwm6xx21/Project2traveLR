@@ -22,26 +22,32 @@
         <%} %>
         <div class = homecontainer> </a>
             <% posts.forEach((post, index) => { %>
+        
             <div class = "card">
                 <div class = "title">
                     <%= post.location %>
                 </div> 
-                <div class ="menuBarDiv">
-                    <button class = testbtn><img class ="menuBar" src="/images/ellipsis.png" alt=""></button>
-                        <nav class="menu">
-                            <ul>
-                                <li class = li>
-                                    <button class = menuBtn>
-                                        <a class = "menuFont"  href="/home/<%= post._id %>">Go to post</a> 
-                                    </button>
-                                </li>
-                                <li class = li>
-                                    <button class = menuBtn>
-                                        <a  class = "menuFont" href="">Coming soon</a>
-                                    </button>
-                                </li>
-                            </ul>
-                        </nav>
+                <div class ="topDiv">
+                    <div class ="postedBy">
+                        <span class ="usernameSpanHome"><%= post.author[0].username%></span>
+                    </div>
+                    <div class ="menuBarDiv">
+                        <button class = testbtn><img class ="menuBar" src="/images/ellipsis.png" alt=""></button>
+                            <nav class="menu">
+                                <ul>
+                                    <li class = li>
+                                        <button class = menuBtn>
+                                            <a class = "menuFont"  href="/home/<%= post._id %>">Go to post</a> 
+                                        </button>
+                                    </li>
+                                    <li class = li>
+                                        <button class = menuBtn>
+                                            <a  class = "menuFont" href="#">Coming soon</a>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </nav>
+                    </div>
                 </div>
                     <div class = "image">
                         <% for (let image of post.img) {%>

@@ -49,7 +49,8 @@ router.post('/home',upload.array('img'),async (req,res, next) => {
 
 // route to obtain new post data from database and render them to the home page
 router.get('/home', async (req, res)=> {
-    const posts = await Post.find({});
+    const posts = await Post.find({}).populate({
+        path:'author'});
         res.render('home', {posts})
 })
 

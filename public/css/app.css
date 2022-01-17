@@ -358,6 +358,21 @@ input {
   font-family: "Inter", sans-serif;
 }
 
+.topDiv {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.postedBy {
+  font-size: 10px;
+  padding: 0;
+}
+
+.usernameSpanHome {
+  color: #333;
+  font-weight: bold;
+}
+
 .menuBar {
   width: 10px;
   height: auto;
@@ -365,6 +380,8 @@ input {
 
 .menuBarDiv {
   text-align: center;
+  /* margin: 0; */
+  padding: 0;
 
   /* margin-right: 30px;
   margin-left: 30px; */
