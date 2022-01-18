@@ -347,6 +347,7 @@ input {
 }
 
 .card {
+  max-width: 100%;
   padding: 1%;
   flex-grow: 1;
   flex-basis: 16%;
@@ -388,9 +389,7 @@ input {
 
 .image img {
   border-radius: 4px;
-  margin: auto;
   width: 350px;
-  /* border: solid gainsboro; */
 }
 
 img {
