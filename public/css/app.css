@@ -125,9 +125,9 @@ input {
   position: relative;
   overflow: hidden;
   overflow: auto;
-  width: 600px;
+  width: 800px;
   max-width: 100%;
-  min-height: 400px;
+  min-height: 600px;
 }
 
 .form-container {
@@ -266,13 +266,14 @@ input {
 .logout {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .homelogo {
   color: cadetblue;
-  margin-right: 20px;
+  margin-left: 20px;
   font-family: "Secular One", sans-serif;
-  font-size: 20px;
+  font-size: 35px;
 }
 
 .btnLogout {
@@ -280,8 +281,9 @@ input {
   color: cadetblue;
   border-color: cadetblue;
   padding: 5px;
-  margin-left: 40px;
+  margin-right: 20px;
   text-transform: none;
+  font-size: 20px;
 }
 
 .btnLogout:hover {
@@ -293,7 +295,8 @@ input {
 .username {
   color: black;
   text-align: left;
-  margin-left: 40px;
+  /* margin-left: 40px; */
+  text-align: center;
   font-family: "Secular One", sans-serif;
 }
 
@@ -334,7 +337,7 @@ input {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
-  width: 1000px;
+  width: 1500px;
   max-width: 100%;
   min-height: 400px;
   box-shadow: 2px 2px 6px 1px #aaa5a5;
@@ -351,7 +354,7 @@ input {
 }
 
 .title {
-  font-size: 12px;
+  font-size: 16px;
   margin-bottom: 5px;
   text-align: center;
   color: cadetblue;
@@ -360,43 +363,39 @@ input {
 
 .topDiv {
   display: flex;
+  margin: auto;
   justify-content: space-evenly;
-}
-
-.postedBy {
-  font-size: 10px;
+  width: 370px;
+  height: 23px;
   padding: 0;
 }
 
 .usernameSpanHome {
   color: #333;
   font-weight: bold;
+  font-size: 14px;
 }
 
 .menuBar {
-  width: 10px;
+  width: 14px;
   height: auto;
 }
 
 .menuBarDiv {
   text-align: center;
-  /* margin: 0; */
   padding: 0;
-
-  /* margin-right: 30px;
-  margin-left: 30px; */
 }
 
 .image img {
   border-radius: 4px;
   margin: auto;
-  width: 250px;
+  width: 350px;
   /* border: solid gainsboro; */
 }
 
 img {
-  width: 250px;
-  height: 250px;
+  width: 350px;
+  height: 350px;
   object-fit: cover;
 }
 
@@ -427,14 +426,14 @@ img:hover {
 
 .caption {
   margin-top: auto;
-  font-size: 10px;
+  font-size: 14px;
   color: gray;
   text-align: center;
   font-family: "Inter", sans-serif;
 }
 
 .timestamp {
-  font-size: 10px;
+  font-size: 14px;
   color: lightgray;
 }
 
@@ -530,6 +529,7 @@ button:focus + .menu {
 .li {
   list-style: none;
   color: white;
+  font-size: 14px;
 }
 
 .menuBtn {
@@ -546,7 +546,7 @@ button:focus + .menu {
 }
 
 .menuFont {
-  font-size: 8px;
+  font-size: 12px;
   text-transform: none;
   font-family: "Secular One", sans-serif;
 }
@@ -554,7 +554,7 @@ button:focus + .menu {
 #btnDelete {
   padding: 0px;
   width: 50px;
-  font-size: 10px;
+  font-size: 14px;
   background-color: white;
 }
 
@@ -575,7 +575,7 @@ button:focus + .menu {
 
 footer {
   color: cadetblue;
-  font-size: 11px;
+  font-size: 16px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -586,7 +586,7 @@ footer {
 
 .footerMap {
   color: cadetblue;
-  font-size: 11px;
+  font-size: 16px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -602,7 +602,7 @@ footer {
 /* show page styling*/
 
 .showtitle {
-  font-size: 15px;
+  font-size: 20px;
   margin-top: 5px;
   margin-bottom: 5px;
   text-align: center;
@@ -614,22 +614,22 @@ footer {
   text-align: left;
   margin-left: 10px;
   margin-top: 4px;
-  font-size: 12px;
+  font-size: 16px;
   color: gainsboro;
 }
 
 .captionShow {
   margin-top: auto;
   margin-bottom: 10px;
-  font-size: 12px;
+  font-size: 16px;
   color: gray;
   text-align: center;
   font-family: "Inter", sans-serif;
 }
 
 .showImg {
-  width: 350px;
-  height: 350px;
+  width: 450px;
+  height: 450px;
   object-fit: cover;
 }
 
@@ -669,7 +669,7 @@ footer {
 }
 
 .btnComment {
-  font-size: 8px;
+  font-size: 14px;
   color: white;
   padding: 4px;
   background-color: cadetblue;
@@ -725,7 +725,7 @@ footer {
 
 /* delete form on comments */
 .btnCommentDelete {
-  font-size: 8px;
+  font-size: 14px;
   color: gainsboro;
   padding: 0px;
   background-color: white;
@@ -758,13 +758,13 @@ footer {
   text-align: center;
   margin-top: 0px;
   color: cadetblue;
-  font-size: 20px;
+  font-size: 30px;
   font-family: "Inter", sans-serif;
 }
 
 .map-P {
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
   font-family: "Inter", sans-serif;
 }
 
@@ -796,7 +796,7 @@ emoji-picker {
 
 #mapCluster {
   width: 80%;
-  height: 400px;
+  height: 500px;
   margin: auto;
   border-radius: 4px;
 }

@@ -71,7 +71,6 @@ router.get('/home/:id', (async(req, res,) => {
             path: 'author'
         }
     }).populate('author');
-    console.log(posts.comments)
     res.render('show', {posts})
 
 }))
