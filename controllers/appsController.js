@@ -133,6 +133,12 @@ router.get('/cluster', async (req, res) => {
     res.render('mapCluster', ({posts}))
 })
 
+// route that renders about page
+
+router.get('/about', async(req, res) => {
+    res.render('about')
+})
+
 
 
 module.exports = router
