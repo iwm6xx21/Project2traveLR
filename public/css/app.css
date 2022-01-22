@@ -520,11 +520,6 @@ ul {
   border: solid ghostwhite;
 }
 
-.testbtn + .menu:active,
-.testbtn:focus + .menu {
-  visibility: visible;
-}
-
 .li {
   list-style: none;
   color: white;
@@ -559,6 +554,11 @@ ul {
 
 #btnDelete:hover {
   color: cadetblue;
+}
+
+.testbtn + .menu:active,
+.testbtn:focus + .menu {
+  visibility: visible;
 }
 
 /* footer styling*/
