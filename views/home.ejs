@@ -1,55 +1,55 @@
 
 <body class = home>
-    <div class = "logout">
-        <p class ="homelogo">
-             <a class = homelogo href="/home/">trave<span class ="logoSpan">LR </span></a>
+    <div class="logout">
+        <p class="homelogo">
+             <a class="homelogo" href="/home/">trave<span class="logoSpan">LR</span></a>
         </p>
         <% if(username && loggedIn) { %>
-        <a href="/session/logout"><button class = btnLogout>Logout</button></a>
+        <a href="/session/logout"><button class="btnLogout">Logout</button></a>
         <% } else  { %>
-            <a href="/"><button class = btnLogout>Login</button></a>
+            <a href="/"><button class="btnLogout">Login</button></a>
             <% } %> 
     </div>
-        <div class = "welcome">
-            <h2 id = "homeH2">Travel Post Engage Repeat!</h2>
+        <div class="welcome">
+            <h2 id="homeH2">Travel Post Engage Repeat!</h2>
     
         </div>
-        <div class ="postButtonContainer">
-            <a href="/new"> <button class = "postButton">New Post</button>
+        <div class="postButtonContainer">
+            <a href="/new"> <button class="postButton">New Post</button>
         </div>
         <% if (username) {%> 
-            <p class ="username">Hello, <span class ="usernameSpan"><%= username %>!</span></p>
+            <p class="username">Hello, <span class="usernameSpan"><%= username %>!</span></p>
         <%} %>
-        <div class = homecontainer> </a>
+        <div class="homecontainer"> </a>
             <% posts.forEach((post, index) => { %>
         
-            <div class = "card">
-                <div class = "title">
+            <div class="card">
+                <div class="title">
                     <%= post.location %>
                 </div> 
-                <div class ="topDiv">
-                    <div class ="postedBy">
-                        <span class ="usernameSpanHome"><%= post.author[0].username%></span>
+                <div class="topDiv">
+                    <div class="postedBy">
+                        <span class="usernameSpanHome"><%= post.author[0].username%></span>
                     </div>
-                    <div class ="menuBarDiv">
-                        <button class = testbtn><img class ="menuBar" src="/images/ellipsis.png" alt=""></button>
+                    <div class="menuBarDiv">
+                        <button class="testbtn"><img class="menuBar" src="/images/ellipsis.png" alt=""></button>
                             <nav class="menu">
                                 <ul>
-                                    <li class = li>
-                                        <button class = menuBtn>
-                                            <a class = "menuFont"  href="/home/<%= post._id %>">Go to post</a> 
+                                    <li class="li">
+                                        <button class="menuBtn">
+                                            <a class="menuFont"  href="/home/<%= post._id %>">Go to post</a> 
                                         </button>
                                     </li>
-                                    <li class = li>
-                                        <button class = menuBtn>
-                                            <a  class = "menuFont" href="#">Coming soon</a>
+                                    <li class="li">
+                                        <button class="menuBtn">
+                                            <a  class="menuFont" href="#">Coming soon</a>
                                         </button>
                                     </li>
                                 </ul>
                             </nav>
                     </div>
                 </div>
-                    <div class = "image">
+                    <div class="image">
                         <% for (let image of post.img) {%>
                         <a href="/home/<%= post._id %> "><img src="<%= image.url %>"alt=""></a>
                             <% } %> 
@@ -62,11 +62,11 @@
                          <h6 class = likesText>likes</h6>
                         </div>
                     </div> -->
-                <div class ="caption">
+                <div class="caption">
                     <%= post.description %> 
                     
                 </div>
-                <div class ="timestamp">
+                <div class="timestamp">
                     Posted:<%= post.createdAt.toLocaleDateString()%> 
                 </div>
             </div>

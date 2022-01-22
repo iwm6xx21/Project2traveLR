@@ -1,38 +1,38 @@
 <body class = home>
 
-    <div class = "logout">
-        <p class ="homelogo">
-            <a class = homelogo href="/home/">trave<span class ="logoSpan">LR </span></a>
+    <div class="logout">
+        <p class="homelogo">
+            <a class="homelogo" href="/home/">trave<span class="logoSpan">LR </span></a>
        </p>
         <% if(username && loggedIn) { %>
-            <a href="/home/"><button class = btnLogout>Home</button></a>
+            <a href="/home/"><button class="btnLogout">Home</button></a>
             <% } else  { %>
-                <a href="/"><button class = btnLogout>Login</button></a>
+                <a href="/"><button class="btnLogout">Login</button></a>
                 <% } %> 
     </div>
-    <div class = showcontainer> </a>
-        <div class = "authortitle">
-            Posted By: <span class ="usernameSpan"><%= posts.author[0].username %></span>
+    <div class="showcontainer"> </a>
+        <div class="authortitle">
+            Posted By: <span class="usernameSpan"><%= posts.author[0].username %></span>
         </div>
-        <div class = "cardShow">
-            <div class = "showtitle">
+        <div class="cardShow">
+            <div class="showtitle">
                 <%= posts.location %>
             </div>  
             
-            <div class ="menuBarDiv">
+            <div class="menuBarDiv">
                 <% if(loggedIn && posts.author[0].username === username) { %> 
-                <button class = testbtn><img class ="menuBar" src="/images/ellipsis.png" alt=""></button>
+                <button class="testbtn"><img class="menuBar" src="/images/ellipsis.png" alt=""></button>
                 <nav class="menu">
                     <ul>
-                        <li class = li>
-                            <button class = menuBtn>
-                                <a class = "menuFont" id ="btnDelete" href="/home/<%= posts.id %>/edit">Edit Post</a> 
+                        <li class="li">
+                            <button class="menuBtn">
+                                <a class="menuFont" id ="btnDelete" href="/home/<%= posts.id %>/edit">Edit Post</a> 
                             </button>
                         </li>
-                        <li class = li>
-                            <button class = menuBtn>
+                        <li class="li">
+                            <button class="menuBtn">
                                 <form action="/<%=posts.id%>?_method=DELETE" method ="POST">
-                                    <input type="submit" value="Delete" class = "menuFont" id ="btnDelete">
+                                    <input type="submit" value="Delete" class="menuFont" id="btnDelete">
                                 </form>
                             </button>
                         </li>
@@ -40,36 +40,36 @@
                     </ul>
                 </nav>
         </div>
-        <div class = "image">
+        <div class="image">
             <% for (let image of posts.img) {%>
-                <a href="/home/<%= posts._id %> "><img class =showImg src="<%= image.url %>" alt=""></a>
+                <a href="/home/<%= posts._id %> "><img class="showImg" src="<%= image.url %>" alt=""></a>
                 <% } %> 
             </div>
-                <div class ="captionShow">
+                <div class="captionShow">
                 <%= posts.description %> 
             </div>
         </div>
-            <div class ="commentContainer">
-                <form class = formcolor action="/home/<%=posts._id%>/comments" method ="POST">
-                        <textarea required class ="commentBox" name="comment" id="comment" cols="30" rows="4" placeholder="Add a comment..."></textarea> 
-                        <input type="text" name ="author" id="author" style="display: none;" value="<%=username%>">
-                        <div class = "commentBtnContainer">
-                            <button class ="btnComment">Post</button>
+            <div class="commentContainer">
+                <form class="formcolor" action="/home/<%=posts._id%>/comments" method="POST">
+                        <textarea required class="commentBox" name="comment" id="comment" cols="30" rows="4" placeholder="Add a comment..."></textarea> 
+                        <input type="text" name="author" id="author" style="display: none;" value="<%=username%>">
+                        <div class="commentBtnContainer">
+                            <button class="btnComment">Post</button>
                         </div>
                 </form> 
                <% for (let comment of posts.comments) {%> 
-                <div class = commentsCard>
-                    <div class = usercommentsContainer>
-                        <p class = commentText> <span class ="usernameSpan"><%=comment.author[0].username%></span>: <%= comment.comment%> </p>
-                        <p class = commentDate> <span class = "commentSpan"> Posted:</span> <%= comment.createdAt.toLocaleDateString()%></p>
+                <div class="commentsCard">
+                    <div class="usercommentsContainer">
+                        <p class="commentText"> <span class="usernameSpan"><%=comment.author[0].username%></span>: <%= comment.comment%> </p>
+                        <p class="commentDate"> <span class="commentSpan"> Posted:</span> <%= comment.createdAt.toLocaleDateString()%></p>
                         <% if(loggedIn && posts.author[0].username === username || loggedIn && comment.author[0].username === username) { %> 
-                            <div class ="menuBarDiv">
-                                <button class = testbtn><img class ="menuBar" src="/images/ellipsis.png" alt=""></button>
+                            <div class="menuBarDiv">
+                                <button class="testbtn"><img class="menuBar" src="/images/ellipsis.png" alt=""></button>
                                 <nav class="menu">
                                     <ul>
-                                        <li class = li>
-                                            <form action="/home/<%= posts._id%>/comments/<%=comment._id%>?_method=DELETE" method = "POST">
-                                                <button class = "btnCommentDelete">Delete Comment</button>
+                                        <li class="li">
+                                            <form action="/home/<%= posts._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                                                <button class="btnCommentDelete">Delete Comment</button>
                                             </form>
                                         </li>
                                     </ul>

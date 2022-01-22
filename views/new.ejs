@@ -1,6 +1,6 @@
 
 
-<section class = index>
+<section class="index">
 
 <a href="/home/">
     <button class="btnBack">Back Home</button>  
@@ -8,12 +8,12 @@
 <div class="container" id="container">
 	<div>
 		<form action="/home" method ='POST' enctype="multipart/form-data">
-			<h1 class = postFormH1>New Post</h1>
-			<input type="text" placeholder="Location" name ="post[location]" id = "location" />
-			<input required  type="file" placeholder="Image" name ="img" id="img" />
-			<input type="text" placeholder="Write a caption" name ="post[description]" id="description"> 
-			<input type="text" name ="author" id="author" style="display: none;" value=<%=username%> > 
-			<button class ="btnNew">Share Adventure</button> 
+			<h1 class="postFormH1">New Post</h1>
+			<input type="text" placeholder="Location" name="post[location]" id = "location" />
+			<input required  type="file" placeholder="Image" name="img" id="img" />
+			<input type="text" placeholder="Write a caption" name="post[description]" id="description"> 
+			<input type="text" name="author" id="author" style="display: none;" value=<%=username%> > 
+			<button class="btnNew">Share Adventure</button> 
 		</form>
 	</div>
 </div>
