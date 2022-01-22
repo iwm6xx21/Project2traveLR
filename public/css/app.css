@@ -520,8 +520,8 @@ ul {
   border: solid ghostwhite;
 }
 
-button + .menu:active,
-button:focus + .menu {
+.testbtn + .menu:active,
+.testbtn:focus + .menu {
   visibility: visible;
 }
 
