@@ -48,7 +48,7 @@ paint: {
 'circle-radius': [
 'step',
 ['get', 'point_count'],
-20,
+30,
 100,
 30,
 750,
@@ -66,7 +66,7 @@ filter: ['has', 'point_count'],
 layout: {
 'text-field': '{point_count_abbreviated}',
 'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-'text-size': 12
+'text-size': 16
 }
 });
  
@@ -77,7 +77,7 @@ source: 'adventures',
 filter: ['!', ['has', 'point_count']],
 paint: {
 'circle-color': '#45978c',
-'circle-radius': 4,
+'circle-radius': 8,
 'circle-stroke-width': 1,
 'circle-stroke-color': '#fff'
 }

@@ -1,4 +1,4 @@
-<body class = home>
+<!-- <body class = home> -->
 
     <div class="logout">
         <p class="homelogo">
@@ -21,20 +21,21 @@
             
             <div class="menuBarDiv">
                 <% if(loggedIn && posts.author[0].username === username) { %> 
-                <button class="testbtn"><img class="menuBar" src="/images/ellipsis.png" alt=""></button>
-                <nav class="menu">
+                <button data-modal-target="#menu" class="testbtn"><img class="menuBar" src="/images/ellipsis.png" alt="pop-up navigation bar"></button>
+                <nav class="menu" id="menu">
+                    <div class="menutitle">
+                        <button data-close-button class="close-button">&times;</button>
+                    </div>
                     <ul>
                         <li class="li">
                             <button class="menuBtn">
-                                <a class="menuFont" id ="btnDelete" href="/home/<%= posts.id %>/edit">Edit Post</a> 
+                                <a class="menuFont" href="/home/<%= posts.id %>/edit">Edit Post</a> 
                             </button>
                         </li>
                         <li class="li">
-                            <button class="menuBtn">
-                                <form action="/<%=posts.id%>?_method=DELETE" method ="POST">
-                                    <input type="submit" value="Delete" class="menuFont" id="btnDelete">
+                                <form class="menuBtn" action="/<%=posts.id%>?_method=DELETE" method ="POST">
+                                    <button   class="menuBtn" id="deleteBtn">Delete</button>
                                 </form>
-                            </button>
                         </li>
                         <% } %> 
                     </ul>
@@ -64,12 +65,16 @@
                         <p class="commentDate"> <span class="commentSpan"> Posted:</span> <%= comment.createdAt.toLocaleDateString()%></p>
                         <% if(loggedIn && posts.author[0].username === username || loggedIn && comment.author[0].username === username) { %> 
                             <div class="menuBarDiv">
-                                <button class="testbtn"><img class="menuBar" src="/images/ellipsis.png" alt=""></button>
-                                <nav class="menu">
+                                <button data-modal-target="#menuTwo" class="testbtn"><img class="menuBar" src="/images/ellipsis.png" alt="pop-up navigation bar"></button>
+                                <nav class="menu" id="menuTwo">
+                                    <div class="menutitle">
+                                        <button data-close-button class="close-button">&times;</button>
+                                    </div>
+     
                                     <ul>
                                         <li class="li">
-                                            <form action="/home/<%= posts._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
-                                                <button class="btnCommentDelete">Delete Comment</button>
+                                            <form class="menuBtn" action="/home/<%= posts._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                                                <button  class="menuBtn" id="deleteBtn">Delete Comment</button>
                                             </form>
                                         </li>
                                     </ul>
@@ -91,7 +96,7 @@
         </script>
 
         <script src="/javascripts/map.js"></script>
-        <!-- <script src="/javascripts/emoji.js"></script> -->
-       
+
+        <div id="overlay"></div>
     </div>
-</body>
+    

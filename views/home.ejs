@@ -31,13 +31,16 @@
                     <div class="postedBy">
                         <span class="usernameSpanHome"><%= post.author[0].username%></span>
                     </div>
-                    <div tabindex="0" class="menuBarDiv">
-                        <button class="testbtn"><img class="menuBar" src="/images/ellipsis.png" alt="pop-up navigation bar"></button>
-                            <nav tabindex="-1" class="menu">
+                    <!-- <div class="menuBarDiv"> 
+                        <button data-modal-target="#modal" class="testbtn"><img class="menuBar" src="/images/ellipsis.png" alt="pop-up navigation bar"></button>
+                            <nav class="menu" id="modal">
+                                <div class="menutitle">
+                                    <button data-close-button class="close-button">&times;</button>
+                                </div>
                                 <ul>
                                     <li class="li">
-                                        <button class="menuBtn">
-                                            <a class="menuFont" href="/home/<%= post._id %>">Go to post</a> 
+                                        <button data-modal-target="#modal" class="menuBtn">
+                                            <a class="menuFont"  href="/home/<%=post._id%>">Go to post</a> 
                                         </button>
                                     </li>
                                     <li class="li">
@@ -47,7 +50,8 @@
                                     </li>
                                 </ul>
                             </nav>
-                    </div>
+                    </div> 
+                    <div id="overlay"></div> -->
                 </div>
                     <div class="image">
                         <% for (let image of post.img) {%>
@@ -72,7 +76,10 @@
             </div>
             
 <%})%>
-        </div>
 
+
+        </div>
+        
+        
     
 </body>

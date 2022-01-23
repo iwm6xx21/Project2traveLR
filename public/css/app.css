@@ -378,17 +378,6 @@ input {
   font-size: 14px;
 }
 
-.menuBar {
-  width: 14px;
-  height: auto;
-  z-index: 0;
-}
-
-.menuBarDiv {
-  text-align: center;
-  padding: 0;
-}
-
 .image img {
   border-radius: 4px;
   width: 350px;
@@ -491,18 +480,65 @@ img:hover {
   border: solid green;
 }
 
+#deleteBtn {
+  color: black;
+  text-transform: lowercase;
+  font-size: 16px;
+  text-transform: none;
+  font-family: "Inter", sans-serif;
+  padding: 0;
+}
+
+#deleteBtn:hover {
+  color: cadetblue;
+}
+
 /* menu bar code for edit and delete*/
 
+.menuBar {
+  width: 14px;
+  height: auto;
+  z-index: 0;
+}
+
+.menutitle {
+  display: flex;
+  justify-content: right;
+  margin: 5px;
+}
+
+.close-button {
+  height: auto;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.menuBarDiv {
+  text-align: center;
+  padding: 0;
+}
+
 .menu {
-  visibility: hidden;
-  position: absolute;
-  z-index: 1;
-  display: inline-block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 2px;
+  z-index: 10;
   background-color: white;
-  border-radius: 4px;
-  border: 1px solid #dedede;
-  width: auto;
-  padding: 2px;
+  width: 500px;
+  max-width: 80%;
+}
+
+.menu.active {
+  transform: translate(-50%, -50%) scale(1);
 }
 
 nav ul {
@@ -530,10 +566,12 @@ ul {
 
 .menuBtn {
   border-radius: 0;
-  padding: 0px;
+  padding: 10px;
+  width: 100%;
   background-color: white;
   color: cadetblue;
   border-color: white;
+  border: none;
 }
 
 .menuFont:hover {
@@ -541,25 +579,40 @@ ul {
 }
 
 .menuFont {
-  font-size: 12px;
+  font-size: 16px;
   text-transform: none;
-  font-family: "Secular One", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 #btnDelete {
   padding: 0px;
-  width: 50px;
-  font-size: 14px;
-  background-color: white;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  background-color: gainsboro;
+  background: none;
+  font-weight: bold;
 }
 
 #btnDelete:hover {
   color: cadetblue;
+  background: none;
 }
 
-.testbtn + .menu:active,
-.testbtn:focus + .menu {
-  visibility: visible;
+#overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
 }
 
 /* footer styling*/
@@ -726,22 +779,22 @@ footer {
 
 /* delete form on comments */
 .btnCommentDelete {
-  font-size: 14px;
-  color: gainsboro;
-  padding: 0px;
-  background-color: white;
-  text-transform: none;
-  border: solid white;
+  border-radius: 0;
+  padding: 10px;
+  width: 100%;
+  background-color: gainsboro;
+  color: cadetblue;
+  border-color: white;
+  border: none;
 }
 
 .btnCommentDelete:hover {
-  color: cadetblue;
-  background-color: white;
-  border-color: white;
+  background-color: gainsboro;
 }
 
 .formcolor {
   background-color: ghostwhite;
+  background: none;
 }
 
 /* show page map syling*/
