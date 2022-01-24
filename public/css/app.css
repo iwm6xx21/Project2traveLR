@@ -912,7 +912,7 @@ emoji-picker {
 
 @media (max-width: 800px) {
   .loginInput {
-    /* font-size: 11px; */
-    width: 150%;
+    font-size: 11px;
+    width: 100%;
   }
 }
