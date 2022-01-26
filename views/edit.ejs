@@ -15,7 +15,7 @@
 				<% posts.img.forEach((img, index) => {%>
 					<div class="editImg">
 						<label class="editcheck"  for="img-<%=index%>">Delete?</label>
-						<input class="checkbox"  type="checkbox" id="img-<%=index%>" name="deleteImages[]" value ="<%=img.filename%> ">
+						<input class="checkbox"  type="checkbox" id="img-<%=index%>" name="deleteImages" value ="<%=img.filename%> ">
 					<img src="<%= img.url %> " alt="">
 				
 				<%}) %> 
