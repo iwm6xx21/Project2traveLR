@@ -19,9 +19,17 @@ router.post('/signup', async (req, res, next) => {
             const desiredUsername = req.body.username
             const userExists = await User.findOne({ username: desiredUsername })
             if (userExists) {
-                req.session.message = 'User name already in use'
+                req.session.message = 'Username already in use'
                 res.redirect('/')
-            } else {
+                 
+            } else if(req.body.password.indexOf(' ') !== -1) {
+                req.session.message = 'Password cannot contain spaces'
+                res.redirect('/')
+            } else if(req.body.password.length < 6) {
+                req.session.message = 'Password must contain atleast 6 characters'
+                res.redirect('/')
+            }
+            else {
                 const salt = bcrypt.genSaltSync(10)
                 const hashedPassword = bcrypt.hashSync(req.body.password, salt)
                 req.body.password = hashedPassword

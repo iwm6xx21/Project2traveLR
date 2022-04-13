@@ -109,11 +109,13 @@ router.get('/home/:id/edit', authRequired,(req, res)=> {
 router.put('/:id', authRequired, upload.array('img'), async(req, res) => {
     const posts = await Post.findByIdAndUpdate(req.params.id, req.body, {new: true}); 
     const imgs = req.files.map(f => ({url: f.path, filename: f.filename}));
+    posts.img.shift(...imgs)
     posts.img.push(...imgs)
     await posts.save()
     if(req.body.deleteImages) {
-        await posts.updateOne({ $pull: {img:{ filename:{ $in: req.body.deleteImages}}}})
+        await posts.updateOne({ $pull: {img:{ filename:{ $in: [req.body.deleteImages]}}}})
     }
+
     res.redirect('/home')
 })
 
