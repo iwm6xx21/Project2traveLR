@@ -9,6 +9,8 @@ const appsController = require('./controllers/appsController')
 const sessionsController = require('./controllers/sessionsController')
 const methodOverride = require('method-override')
 const mongoSanitize = require('express-mongo-sanitize');
+const favicon = require('serve-favicon')
+const path = require('path')
 
 
 
@@ -16,6 +18,9 @@ const mongoSanitize = require('express-mongo-sanitize');
 
 // Public Folder setup
 app.use(express.static('public'))
+
+app.use(favicon(path.join(__dirname, 'public', 'travelr.ico')))
+
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json())
