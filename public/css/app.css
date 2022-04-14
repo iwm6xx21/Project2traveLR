@@ -957,6 +957,59 @@ emoji-picker {
   padding: 20px;
 }
 
+/* 404 Custom Page Styling*/
+
+.errorBackground {
+  background: linear-gradient(110deg, ghostwhite 60%, cadetblue 60%);
+  padding: 150px;
+  margin-bottom: 90px;
+}
+
+.errorH1 {
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  margin-bottom: 50px;
+  color: rgb(82, 79, 79);
+}
+
+.errorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.errorImage {
+  width: 250px;
+  height: 250px;
+  margin-left: 40px;
+}
+
+.errorImage:hover {
+  box-shadow: none;
+}
+
+.errorP {
+  font-size: 23px;
+  font-weight: bold;
+  color: cadetblue;
+}
+
+.errorButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.errorButton {
+  border: solid rgb(210, 210, 214);
+}
+
+.errorButton:hover {
+  background-color: white;
+  color: cadetblue;
+}
+
 /* mobile view*/
 
 @media screen and (max-width: 800px) {
@@ -1002,5 +1055,25 @@ emoji-picker {
   }
   .aboutp {
     font-size: 18px;
+  }
+  .errorBackground {
+    padding: 10px;
+  }
+
+  .errorH1 {
+    font-size: 28px;
+  }
+  .errorContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .itemError :first-child {
+    flex-wrap: wrap;
+  }
+  .errorP {
+    text-align: center;
+    text-shadow: 1px 1px 0 rgb(230, 233, 233), 1px 1px 0 rgb(246, 246, 246),
+      1px 1px 0 rgb(242, 243, 243), 1px 1px 0 rgb(253, 253, 253);
   }
 }

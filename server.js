@@ -70,10 +70,16 @@ const routeHit = (req, res, next) => {
 
 app.use(routeHit)
 
+
 //setting up controllers on server
 app.use('/', appsController)
 app.use('/session', sessionsController)
 
+
+// Custom 404 page created
+app.use((req, res) => {
+    res.status(404).send(res.render('404'))
+})
 
 
 
