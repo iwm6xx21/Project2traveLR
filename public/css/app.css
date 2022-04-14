@@ -872,17 +872,18 @@ emoji-picker {
   justify-content: center;
   margin: 0;
   margin: auto;
+  margin-bottom: 20px;
 }
 
 .aboutlogo {
   text-align: center;
   color: cadetblue;
   font-family: "Secular One", sans-serif;
-  font-size: 35px;
+  font-size: 45px;
 }
 
 .aboutH1 {
-  font-size: 40px;
+  font-size: 30px;
   font-family: "Inter", sans-serif;
   text-align: center;
 }
@@ -898,21 +899,108 @@ emoji-picker {
 
 .photoContainer {
   display: flex;
+  justify-content: center;
   justify-content: space-between;
-  margin: auto;
+  background: linear-gradient(110deg, #444645 60%, rgb(233, 227, 227) 60%);
+  border-radius: 5px;
 }
 
-.nextPara {
+.actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin: auto;
   text-align: center;
+}
+
+.iconDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconify {
+  color: cadetblue;
+}
+
+.comment {
+  margin-right: 40px;
+  border: cadetblue solid;
+  border-width: thin;
+  border-radius: 3px;
+  width: 300px;
+  height: 200px;
+}
+.post {
+  margin-right: 40px;
+  border: cadetblue solid;
+  border-width: thin;
+  border-radius: 3px;
+  width: 300px;
+  height: 200px;
+}
+.view {
+  border: cadetblue solid;
+  border-width: thin;
+  border-radius: 3px;
+  width: 300px;
+  height: 200px;
+}
+
+.abouth3 {
+  font-size: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.aboutp {
+  font-size: 20px;
+  padding: 20px;
 }
 
 /* mobile view*/
 
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
   .loginInput {
     font-size: 11px;
     width: 100%;
+  }
+  .aboutH1 {
+    font-size: 20px;
+  }
+  .aboutP {
+    font-size: 18px;
+  }
+  .photoContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .item:first-child {
+    flex-wrap: wrap;
+  }
+  .aboutimg {
+    width: 200px;
+    height: 200px;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .item2 :first-child {
+    flex-wrap: wrap;
+  }
+  .post {
+    margin: auto;
+  }
+  .comment {
+    margin: auto;
+    margin-top: 15px;
+  }
+  .view {
+    margin: auto;
+    margin-top: 15px;
+  }
+  .aboutp {
+    font-size: 18px;
   }
 }
